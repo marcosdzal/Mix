@@ -5,5 +5,7 @@
     [Mes]      NVARCHAR (3)   NULL,
     [Orden]    NVARCHAR (100) NULL,
     [Real]     FLOAT (53)     NULL
+    ,
+    [Real3]     FLOAT (53)     NULL
 );
 
