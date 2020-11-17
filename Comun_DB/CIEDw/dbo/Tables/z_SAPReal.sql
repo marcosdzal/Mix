@@ -4,7 +4,6 @@
     [Ano]      INT            NULL,
     [Mes]      NVARCHAR (3)   NULL,
     [Orden]    NVARCHAR (100) NULL,
-    [Real]     FLOAT (53)     NULL,
-    [Real2]     FLOAT (53)     NULL
+    [Real]     FLOAT (53)     NULL
 );
 
