@@ -1,0 +1,193 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/24/2020 5:05:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AWSQL01COR"
+  DTS:CreatorName="CIE\userbisql"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{265F8163-2731-405C-8982-BB283258F76B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Inversiones"
+  DTS:PackageType="5"
+  DTS:VersionBuild="78"
+  DTS:VersionGUID="{59984804-97A4-4364-87DA-D4B05839D658}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Inversiones]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{3D3A762E-7744-4ACC-BCCD-7B1FB6627DF4}"
+      DTS:ObjectName="Inversiones">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::RutaFicheroInversiones]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\userbisql.CIE\Desktop\Formacion\Ficheros\2020_BPC Fichero plano inversiones_v1.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=NO&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RelacionSocBPCSAP]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{628A9926-703F-4835-AA73-262C40ED8916}"
+      DTS:ObjectName="RelacionSocBPCSAP">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::RutaFicheroRelacionSocBPCSAP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\userbisql.CIE\Desktop\Formacion\Ficheros\Carga Sociedades BPC-SAP.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE35FB4E-2F24-469B-8C7C-6D93508BCA48}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_I4) @[User::AnioFichero_Pre]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero">
+      <DTS:VariableValue
+        DTS:DataType="3">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8EFC9F83-B209-4E13-9C40-C1910670F22E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( @[User::RutaFicheroInversiones] , 51,4)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero_Pre">
+      <DTS:VariableValue
+        DTS:DataType="8">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FE00063A-B8AB-4F65-B283-E7443807546B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroInversiones">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\userbisql.CIE\Desktop\Formacion\Ficheros\2020_BPC Fichero plano inversiones_v1.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6C6297E-2B13-4C76-863A-008758177731}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroRelacionSocBPCSAP">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\userbisql.CIE\Desktop\Formacion\Ficheros\Carga Sociedades BPC-SAP.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETLFact_InversionesSAP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4935B3E3-D826-4DD3-B7C8-D1DA9D5840FE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETLFact_InversionesSAP"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+          SQLTask:SqlStatementSource="/*  ;with Real as (&#xA;select &#xA;cast( cast(Ano as char(4)) + '/' + right(Mes, 2) + '/01' as datetime) as Fecha,&#xA;Planta,&#xA;[Sociedad],&#xA;coalesce(GRO.Grupo, 'Sin Grupo') as Grupo,&#xA;z_SAPReal.Orden as codOrden,&#xA;isnull(Ordenes.[Descripcion], '000000000000') as Orden,&#xA;Real&#xA;from [dbo].[z_SAPReal]&#xA;left join [z_SAPGrupoOrden] as GRO &#xA;on GRO.Orden =  z_SAPReal.Orden&#xA;left join [z_ExcelOrdenes] as Ordenes&#xA;on Ordenes.Orden =  cast(z_SAPReal.Orden as int)&#xA;),&#xA;&#xA;Comprometido as (&#xA;select &#xA;cast( cast(Ano as char(4)) + '/' + right(Mes, 2) + '/01' as datetime) as Fecha,&#xA;Planta,&#xA;Sociedad,&#xA;coalesce(GRO.Grupo, 'Sin Grupo') as Grupo,&#xA;z_SAPComprometido.Orden as codOrden,&#xA;isnull(Ordenes.[Descripcion], '000000000000') as Orden,&#xA;Comprometido&#xA;from [dbo].[z_SAPComprometido]&#xA;left join [z_SAPGrupoOrden] as GRO &#xA;on GRO.Orden =  z_SAPComprometido.Orden&#xA;left join [z_ExcelOrdenes] as Ordenes&#xA;on Ordenes.Orden =  cast(z_SAPComprometido.Orden as int)&#xA;),&#xA;Presupuesto as (&#xA;select &#xA;cast( cast(Ano as char(4)) + '/01/01' as datetime) as Fecha,&#xA;Planta,&#xA;Sociedad,&#xA;coalesce(GRO.Grupo, 'Sin Grupo') as Grupo,&#xA;z_SAPPresupuesto.Orden as codOrden,&#xA;isnull(Ordenes.[Descripcion], '000000000000') as Orden,&#xA;Presupuesto&#xA;from [dbo].[z_SAPPresupuesto]&#xA;left join [z_SAPGrupoOrden] as GRO &#xA;on GRO.Orden =  z_SAPPresupuesto.Orden&#xA;left join [z_ExcelOrdenes] as Ordenes&#xA;on Ordenes.Orden =  cast(z_SAPPresupuesto.Orden as int)&#xA;&#xA;)&#xA;&#xA;insert into z_Fact_InversionesSAP&#xA;select &#xA;&#x9;coalesce(Presupuesto.Fecha, Real.Fecha, Comprometido.Fecha) as Fecha,&#xA;&#x9;coalesce(Presupuesto.Planta, Real.Planta, Comprometido.Planta) as Planta,&#xA;&#x9;coalesce(Presupuesto.Sociedad, Real.Sociedad, Comprometido.Sociedad) as Sociedad,&#xA;&#x9;coalesce(Presupuesto.Grupo, Real.Grupo, Comprometido.Grupo) as Grupo,&#xA;&#x9;coalesce(Presupuesto.codOrden, Real.codOrden, Comprometido.codOrden) as codOrden,&#xA;&#x9;coalesce(Presupuesto.Orden, Real.Orden, Comprometido.Orden) as Orden,&#xA;&#x9;coalesce(Presupuesto.Presupuesto, 0) as Presupuesto,&#xA;&#x9;coalesce(Real.Real, 0) as Real,&#xA;&#x9;coalesce(Comprometido.Comprometido, 0) as Comprometido&#xA;from Real &#xA;full join Comprometido&#xA;&#x9;on Real.Fecha = Comprometido.Fecha&#xA;&#x9;and Real.Sociedad = Comprometido.Sociedad&#xA;&#x9;and Real.codOrden = Comprometido.codOrden&#xA;full join Presupuesto&#xA;&#x9;on Real.Fecha = Presupuesto.Fecha&#xA;&#x9;and Real.Sociedad = Presupuesto.Sociedad&#xA;&#x9;and Real.codOrden = Presupuesto.codOrden&#xA;*/&#xA;&#xA;;with Real as (&#xA;select &#xA;cast( cast(Ano as char(4)) + '/' + right(Mes, 2) + '/01' as datetime) as Fecha,&#xA;Planta,&#xA;[Sociedad],&#xA;coalesce(GRO.Grupo, 'Sin Grupo') as Grupo,&#xA;z_SAPReal.Orden as codOrden,&#xA;Real&#xA;from [dbo].[z_SAPReal]&#xA;left join [z_SAPGrupoOrden] as GRO &#xA;on GRO.Orden =  z_SAPReal.Orden&#xA;&#xA;),&#xA;&#xA;Comprometido as (&#xA;select &#xA;cast( cast(Ano as char(4)) + '/' + right(Mes, 2) + '/01' as datetime) as Fecha,&#xA;Planta,&#xA;Sociedad,&#xA;coalesce(GRO.Grupo, 'Sin Grupo') as Grupo,&#xA;z_SAPComprometido.Orden as codOrden,&#xA;Comprometido&#xA;from [dbo].[z_SAPComprometido]&#xA;left join [z_SAPGrupoOrden] as GRO &#xA;on GRO.Orden =  z_SAPComprometido.Orden&#xA;&#xA;),&#xA;Presupuesto as (&#xA;select &#xA;cast( cast(Ano as char(4)) + '/01/01' as datetime) as Fecha,&#xA;Planta,&#xA;Sociedad,&#xA;coalesce(GRO.Grupo, 'Sin Grupo') as Grupo,&#xA;z_SAPPresupuesto.Orden as codOrden,&#xA;Presupuesto&#xA;from [dbo].[z_SAPPresupuesto]&#xA;left join [z_SAPGrupoOrden] as GRO &#xA;on GRO.Orden =  z_SAPPresupuesto.Orden&#xA;&#xA;&#xA;)&#xA;&#xA;insert into z_Fact_InversionesSAP&#xA;select &#xA;&#x9;coalesce(Presupuesto.Fecha, Real.Fecha, Comprometido.Fecha) as Fecha,&#xA;&#x9;coalesce(Presupuesto.Planta, Real.Planta, Comprometido.Planta) as Planta,&#xA;&#x9;coalesce(Presupuesto.Sociedad, Real.Sociedad, Comprometido.Sociedad) as Sociedad,&#xA;&#x9;coalesce(Presupuesto.Grupo, Real.Grupo, Comprometido.Grupo) as Grupo,&#xA;&#x9;coalesce(Presupuesto.codOrden, Real.codOrden, Comprometido.codOrden) as codOrden,&#xA;&#x9;--coalesce(Presupuesto.Orden, Real.Orden, Comprometido.Orden) as Orden,&#xA;&#x9;coalesce(Presupuesto.Presupuesto, 0) as Presupuesto,&#xA;&#x9;coalesce(Real.Real, 0) as Real,&#xA;&#x9;coalesce(Comprometido.Comprometido, 0) as Comprometido&#xA;from Real &#xA;full join Comprometido&#xA;&#x9;on Real.Fecha = Comprometido.Fecha&#xA;&#x9;and Real.Sociedad = Comprometido.Sociedad&#xA;&#x9;and Real.codOrden = Comprometido.codOrden&#xA;full join Presupuesto&#xA;&#x9;on Real.Fecha = Presupuesto.Fecha&#xA;&#x9;and Real.Sociedad = Presupuesto.Sociedad&#xA;&#x9;and Real.codOrden = Presupuesto.codOrden&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AnioFichero"
+            SQLTask:DtsVariableName="User::AnioFichero"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQLDeleteFact_InversionesSAP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{115B70DE-0D0D-4B89-9014-CC5255676915}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQLDeleteFact_InversionesSAP"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+          SQLTask:SqlStatementSource="delete from [dbo].[z_Fact_InversionesSAP]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@AnioFichero"
+            SQLTask:DtsVariableName="User::AnioFichero"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{6772E82F-5A5D-440E-9D92-A4CE0CB5C54D}"
+      DTS:From="Package\SQLDeleteFact_InversionesSAP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\ETLFact_InversionesSAP" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193.6,41.6"
+          Id="Package\ETLFact_InversionesSAP"
+          TopLeft="78,83" />
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\SQLDeleteFact_InversionesSAP"
+          TopLeft="57.999999659402,9.38823528553787" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="172.599999829701,50.9882352855379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.0117647144621"
+              Start="0,0"
+              End="0,24.5117647144621">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5117647144621" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

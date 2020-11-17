@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[SAPPlants] (
+    [Plant]               NVARCHAR (4)   NOT NULL,
+    [PlantName]           NVARCHAR (50)  NOT NULL,
+    [IdConnection]        INT            NOT NULL,
+    [CurrentYear]         SMALLINT       NOT NULL,
+    [CurrentMonth]        SMALLINT       NOT NULL,
+    [Active]              BIT            NOT NULL,
+    [AdminName]           NVARCHAR (50)  NOT NULL,
+    [AdminMail]           NVARCHAR (100) NOT NULL,
+    [SmtpHost]            NVARCHAR (100) NOT NULL,
+    [SmtpPort]            SMALLINT       NOT NULL,
+    [SalesPreviousMonths] SMALLINT       NOT NULL,
+    [Society]             NVARCHAR (4)   NOT NULL,
+    [DaysToUpdate]        INT            NULL,
+    [Sector]              NVARCHAR (2)   NULL,
+    [Currency]            NVARCHAR (5)   DEFAULT ('EUR') NULL,
+    [Calendar]            NVARCHAR (2)   DEFAULT ('GA') NULL,
+    [ChartAccounts]       NVARCHAR (4)   NULL,
+    [Direccion]           NVARCHAR (30)  NULL,
+    [CodigoPostal]        NVARCHAR (10)  NULL,
+    [Poblacion]           NVARCHAR (25)  NULL,
+    [ClavePais]           NVARCHAR (3)   NULL,
+    [CurrencyReport]      NCHAR (10)     DEFAULT ('EUR') NULL,
+    CONSTRAINT [PK_SAPPlants] PRIMARY KEY CLUSTERED ([Plant] ASC)
+);
+

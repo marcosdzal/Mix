@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[Fact_RendimientosProduccionSAP] (
+    [Centro]             NVARCHAR (4)    NULL,
+    [Fecha]              DATETIME        NULL,
+    [Turno]              NVARCHAR (4)    NULL,
+    [Material]           NVARCHAR (18)   NULL,
+    [PuestoTrabajo]      NVARCHAR (8)    NULL,
+    [CentroBeneficio]    NVARCHAR (10)   NULL,
+    [CantidadOK]         DECIMAL (18, 3) NULL,
+    [CantidadNoOK]       DECIMAL (18, 3) NULL,
+    [TotalFabricacion]   DECIMAL (18, 3) NULL,
+    [HNoPPlan]           DECIMAL (18, 3) NULL,
+    [ProduccionTeorica]  DECIMAL (18, 3) NULL,
+    [TasaDisponible]     DECIMAL (18, 3) NULL,
+    [TasaRendimiento]    DECIMAL (18, 3) NULL,
+    [TasaCalidad]        DECIMAL (18, 3) NULL,
+    [OEE]                DECIMAL (18, 3) NULL,
+    [HorasProductivas]   DECIMAL (18, 3) NULL,
+    [HorasNoProductivas] DECIMAL (18, 3) NULL,
+    [HCalculoNeto]       DECIMAL (18, 3) NULL,
+    [TiempoTeorico]      DECIMAL (18, 3) NULL,
+    [TasaOcupacion]      DECIMAL (18, 3) NULL,
+    [CantidadRM]         DECIMAL (18, 3) NULL,
+    [CantidadRB]         DECIMAL (18, 3) NULL
+);
+

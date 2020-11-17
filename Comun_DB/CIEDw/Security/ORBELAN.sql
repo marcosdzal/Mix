@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [ORBELAN]
+    AUTHORIZATION [dbo];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [LTFORGE]
+    AUTHORIZATION [dbo];
+

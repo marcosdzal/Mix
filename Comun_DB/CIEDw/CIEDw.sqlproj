@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CIEDw</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{64e4b469-5fcd-4e3f-84c0-2acb691df97e}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CIEDw</RootNamespace>
+    <AssemblyName>CIEDw</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="LEGAZPI\" />
+    <Folder Include="LEGAZPI\Views\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="LTFORGE\" />
+    <Folder Include="LTFORGE\Views\" />
+    <Folder Include="GALFOR\" />
+    <Folder Include="GALFOR\Views\" />
+    <Folder Include="AUTOFORJAS\" />
+    <Folder Include="AUTOFORJAS\Views\" />
+    <Folder Include="NORMA\" />
+    <Folder Include="NORMA\Views\" />
+    <Folder Include="ORBELAN\" />
+    <Folder Include="ORBELAN\Views\" />
+    <Folder Include="EGANA\" />
+    <Folder Include="EGANA\Views\" />
+    <Folder Include="TAUBATE\" />
+    <Folder Include="TAUBATE\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\AutocontrolesSinCubrir.sql" />
+    <Build Include="dbo\Tables\Dim_TiposIVASAP.sql" />
+    <Build Include="dbo\Tables\Autocontroles.sql" />
+    <Build Include="dbo\Tables\Dim_ClavesIdiomasSAP.sql" />
+    <Build Include="dbo\Tables\SAPConsumoReal.sql" />
+    <Build Include="dbo\Tables\AutocontrolesExpirados.sql" />
+    <Build Include="dbo\Tables\Dim_AlmacenesSAP.sql" />
+    <Build Include="dbo\Tables\ToleranciasAutocontrolesCaptor.sql" />
+    <Build Include="dbo\Tables\OFCaptor.sql" />
+    <Build Include="dbo\Tables\Fact_PresupuestoVentasSAP.sql" />
+    <Build Include="dbo\Tables\OFFasesCaptor.sql" />
+    <Build Include="dbo\Tables\TiposMovimientos.sql" />
+    <Build Include="dbo\Tables\ProduccionCaptor.sql" />
+    <Build Include="dbo\Tables\TiposCalidadesCaptor.sql" />
+    <Build Include="dbo\Tables\GruposOEECaptor.sql" />
+    <Build Include="dbo\Tables\SAPPedidosCompras.sql" />
+    <Build Include="dbo\Tables\PuestosCaptor.sql" />
+    <Build Include="dbo\Tables\SAPPedidosImputacionCompras.sql" />
+    <Build Include="dbo\Tables\SAPEvolucionDemandaClientes.sql" />
+    <Build Include="dbo\Tables\SAPPedidosPosCompras.sql" />
+    <Build Include="dbo\Tables\SAPRepartosPosCompras.sql" />
+    <Build Include="dbo\Tables\TiposEstadosCaptor.sql" />
+    <Build Include="dbo\Tables\CalidadesProduccionCaptor.sql" />
+    <Build Include="dbo\Tables\ReferenciasCaptor.sql" />
+    <Build Include="dbo\Tables\TurnosCaptor.sql" />
+    <Build Include="dbo\Tables\CustomPuestos.sql" />
+    <Build Include="dbo\Tables\SAPMovs.sql" />
+    <Build Include="dbo\Tables\CompaniasCaptor.sql" />
+    <Build Include="dbo\Tables\Fact_FacturacionProveedoresSAP.sql" />
+    <Build Include="dbo\Tables\Dim_TiposMaterialesSAP.sql" />
+    <Build Include="dbo\Tables\StocksSAPEvolucion.sql" />
+    <Build Include="dbo\Tables\Jobs.sql" />
+    <Build Include="dbo\Tables\Fechas.sql" />
+    <Build Include="dbo\Tables\Fact_EstadosPuestoSAP.sql" />
+    <Build Include="dbo\Tables\Dim_EstadosProduccionSAP.sql" />
+    <Build Include="dbo\Tables\TurnosDefiniciones.sql" />
+    <Build Include="dbo\Tables\Dim_IncidenciasOperariosSAP.sql" />
+    <Build Include="dbo\Tables\Dim_OperariosSAP.sql" />
+    <Build Include="dbo\Tables\Fact_PresupuestoComprasSAP.sql" />
+    <Build Include="dbo\Tables\Dim_TiposCalidadesSAP.sql" />
+    <Build Include="dbo\Tables\Dim_CentrosCosteSAP.sql" />
+    <Build Include="dbo\Tables\Dim_PuestosSAP.sql" />
+    <Build Include="dbo\Tables\SAPClientesGeneral.sql" />
+    <Build Include="dbo\Tables\CambioMoneda.sql" />
+    <Build Include="dbo\Tables\Dim_CalendarioFabricaSAP.sql" />
+    <Build Include="dbo\Tables\SAPErroresPrecios.sql" />
+    <Build Include="dbo\Tables\Centros.sql" />
+    <Build Include="dbo\Tables\Dim_LotesSAP.sql" />
+    <Build Include="dbo\Tables\Dim_OrdenesInversionSAP.sql" />
+    <Build Include="dbo\Tables\FamiliasCompras.sql" />
+    <Build Include="dbo\Tables\Dim_RutasTransporteSAP.sql" />
+    <Build Include="dbo\Tables\FechaConsulta.sql" />
+    <Build Include="dbo\Tables\Organizaciones.sql" />
+    <Build Include="dbo\Tables\Paises.sql" />
+    <Build Include="dbo\Tables\SAPConnection.sql" />
+    <Build Include="dbo\Tables\ProduccionesCaptorSAP.sql" />
+    <Build Include="dbo\Tables\SAPDebeHaber.sql" />
+    <Build Include="dbo\Tables\z_ExcelInversionesBPC.sql" />
+    <Build Include="dbo\Tables\Bonos.sql" />
+    <Build Include="dbo\Tables\z_SAPGrupoOrden.sql" />
+    <Build Include="dbo\Tables\BonosLineas.sql" />
+    <Build Include="dbo\Tables\SAPOrdersStat.sql" />
+    <Build Include="dbo\Tables\TiemposCaptorSAP.sql" />
+    <Build Include="dbo\Tables\SAPPlants.sql" />
+    <Build Include="dbo\Tables\RechazosSAP.sql" />
+    <Build Include="dbo\Tables\SAPRutasTransporte.sql" />
+    <Build Include="dbo\Tables\ParadasSAP.sql" />
+    <Build Include="dbo\Tables\ParadasBonoSAP.sql" />
+    <Build Include="dbo\Tables\Fact_CalidadesProduccionSAP.sql" />
+    <Build Include="dbo\Tables\SAPMaterialesTextos.sql" />
+    <Build Include="dbo\Tables\Dim_BancosSAP.sql" />
+    <Build Include="dbo\Tables\Fact_ForecastProduccionSAP.sql" />
+    <Build Include="dbo\Tables\Dim_TurnosDefinicionesSAP.sql" />
+    <Build Include="dbo\Tables\Dim_TurnosSAP.sql" />
+    <Build Include="dbo\Tables\Fact_SaldosCuentasMayorDiario.sql" />
+    <Build Include="dbo\Tables\Dim_GruposOEESAP.sql" />
+    <Build Include="dbo\Tables\Dim_ClasesEntregaSAP.sql" />
+    <Build Include="dbo\Tables\SAPPreciosVentas.sql" />
+    <Build Include="dbo\Tables\Dim_ClasesCalidades.sql" />
+    <Build Include="dbo\Tables\Dim_OrdenesFabricacionSAP.sql" />
+    <Build Include="dbo\Tables\z_ExcelRelacionSocBPCSAP.sql" />
+    <Build Include="dbo\Tables\Expediciones.sql" />
+    <Build Include="dbo\Tables\ExpedicionesLineas.sql" />
+    <Build Include="dbo\Tables\AllMaterialsData.sql" />
+    <Build Include="dbo\Tables\ExpedicionesClientes.sql" />
+    <Build Include="dbo\Tables\Dim_CuentasFijasSAP.sql" />
+    <Build Include="dbo\Tables\VentasClientes.sql" />
+    <Build Include="dbo\Tables\CustomPuestosCaptor.sql" />
+    <Build Include="dbo\Tables\SAPOrdenesEntregaCliente.sql" />
+    <Build Include="dbo\Tables\Dim_BancosTesoSAP.sql" />
+    <Build Include="dbo\Tables\SAPRutasPedidos.sql" />
+    <Build Include="dbo\Tables\OperariosCaptor.sql" />
+    <Build Include="dbo\Tables\Dim_GruposBancosTesoSAP.sql" />
+    <Build Include="dbo\Tables\SAPDemandaClientes.sql" />
+    <Build Include="dbo\Tables\ExecutionStadistics.sql" />
+    <Build Include="dbo\Tables\SAPUltMovs.sql" />
+    <Build Include="dbo\Tables\UpdateDates.sql" />
+    <Build Include="dbo\Tables\SAPProveedores.sql" />
+    <Build Include="dbo\Tables\Dim_ProyectosSAP.sql" />
+    <Build Include="dbo\Tables\SAPRecepcionesCompras.sql" />
+    <Build Include="dbo\Tables\SAPStockMaterial.sql" />
+    <Build Include="dbo\Tables\SAPStockLote.sql" />
+    <Build Include="dbo\Tables\SAPStockValorado.sql" />
+    <Build Include="dbo\Tables\SAPStockCliente.sql" />
+    <Build Include="dbo\Tables\SAPStockProveedor.sql" />
+    <Build Include="dbo\Tables\SAPStockSubcontrata.sql" />
+    <Build Include="dbo\Tables\z_SAPReal.sql" />
+    <Build Include="dbo\Tables\z_SAPPresupuesto.sql" />
+    <Build Include="dbo\Tables\Dim_CuentasContablesSAP.sql" />
+    <Build Include="dbo\Tables\z_SAPComprometido.sql" />
+    <Build Include="dbo\Tables\z_Fact_InversionesBPC.sql" />
+    <Build Include="dbo\Tables\Dim_TiposImputacionSAP.sql" />
+    <Build Include="dbo\Tables\Dim_HojasRuta.sql" />
+    <Build Include="dbo\Tables\StocksSAP.sql" />
+    <Build Include="dbo\Tables\Dim_TiposPosicionPedidoSAP.sql" />
+    <Build Include="dbo\Tables\z_ExcelOrdenes.sql" />
+    <Build Include="dbo\Tables\Dim_ListasMateriales.sql" />
+    <Build Include="dbo\Tables\Dim_OperacionesSAP.sql" />
+    <Build Include="dbo\Tables\SAPWMStock.sql" />
+    <Build Include="dbo\Tables\z_old_Fact_InversionesSAP.sql" />
+    <Build Include="dbo\Tables\Dim_SubcontratacionRuta.sql" />
+    <Build Include="dbo\Tables\SAPPedidosActualizados.sql" />
+    <Build Include="dbo\Tables\Dim_VersionesFabricacion.sql" />
+    <Build Include="dbo\Tables\TiposStocks.sql" />
+    <Build Include="dbo\Tables\Dim_Paises.sql" />
+    <Build Include="dbo\Tables\SAPPedidosImputacionActualizados.sql" />
+    <Build Include="dbo\Tables\z_Fact_InversionesSAP.sql" />
+    <Build Include="dbo\Tables\SAPPedidosPosicionesActualizados.sql" />
+    <Build Include="dbo\Tables\SAPPedidosRepartosActualizados.sql" />
+    <Build Include="dbo\Tables\StockValorado.sql" />
+    <Build Include="dbo\Tables\StockValoradoPeriodo.sql" />
+    <Build Include="dbo\Tables\Fact_RendimientosProduccionSAP.sql" />
+    <Build Include="dbo\Tables\StockNoValoradoPeriodo.sql" />
+    <Build Include="dbo\Tables\ClasesEntregas.sql" />
+    <Build Include="dbo\Tables\PesosConsumos.sql" />
+    <Build Include="dbo\Tables\CuentasContables.sql" />
+    <Build Include="dbo\Tables\PreciosVta.sql" />
+    <Build Include="dbo\Tables\SAPSaldosCuentasMayor.sql" />
+    <Build Include="dbo\Tables\Sectores.sql" />
+    <Build Include="dbo\Tables\Fact_ProduccionSAP.sql" />
+    <Build Include="dbo\Tables\ColadasCaptor.sql" />
+    <Build Include="dbo\Tables\CentrosBeneficio.sql" />
+    <Build Include="dbo\Tables\EstadosPuestoCaptor.sql" />
+    <Build Include="dbo\Tables\PresenciaEnPuestoCaptor.sql" />
+    <Build Include="dbo\Tables\TiemposCaptor.sql" />
+    <Build Include="LEGAZPI\Views\Ventas.sql" />
+    <Build Include="dbo\Views\Dim_Almacenes.sql" />
+    <Build Include="LEGAZPI\Views\CaptorPuestos.sql" />
+    <Build Include="dbo\Views\Dim_CentrosBeneficio.sql" />
+    <Build Include="LEGAZPI\Views\CaptorTurnos.sql" />
+    <Build Include="dbo\Views\Dim_FamiliasCompras.sql" />
+    <Build Include="dbo\Views\Dim_Materiales.sql" />
+    <Build Include="LEGAZPI\Views\CaptorCompanias.sql" />
+    <Build Include="dbo\Views\Dim_Familias.sql" />
+    <Build Include="LEGAZPI\Views\CaptorProducciones.sql" />
+    <Build Include="dbo\Views\Dim_FamiliasMateriales.sql" />
+    <Build Include="LEGAZPI\Views\CaptorCalidadesProduccion.sql" />
+    <Build Include="dbo\Views\Dim_ClasesCalidadesProduccion.sql" />
+    <Build Include="LEGAZPI\Views\CaptorEstadosPuestos.sql" />
+    <Build Include="LEGAZPI\Views\CaptorGruposOEE.sql" />
+    <Build Include="LEGAZPI\Views\CaptorOFs.sql" />
+    <Build Include="LTFORGE\Views\FechasActualizacion.sql" />
+    <Build Include="LEGAZPI\Views\CaptorOFsFases.sql" />
+    <Build Include="LTFORGE\Views\Plantas.sql" />
+    <Build Include="LEGAZPI\Views\CaptorPresenciasOperarios.sql" />
+    <Build Include="LTFORGE\Views\Materiales.sql" />
+    <Build Include="LEGAZPI\Views\CaptorReferencias.sql" />
+    <Build Include="GALFOR\Views\CaptorPuestos.sql" />
+    <Build Include="LEGAZPI\Views\CaptorTiempos.sql" />
+    <Build Include="dbo\Views\Dim_CambioMoneda.sql" />
+    <Build Include="GALFOR\Views\CaptorTurnos.sql" />
+    <Build Include="LTFORGE\Views\ComprasPedidosPendientes.sql" />
+    <Build Include="LEGAZPI\Views\CaptorTiposCalidades.sql" />
+    <Build Include="dbo\Views\Fact_EvolucionStock.sql" />
+    <Build Include="LTFORGE\Views\FamiliasCompras.sql" />
+    <Build Include="LEGAZPI\Views\CaptorTiposEstados.sql" />
+    <Build Include="dbo\Views\Dim_Destinatarios.sql" />
+    <Build Include="GALFOR\Views\CaptorCompanias.sql" />
+    <Build Include="LTFORGE\Views\CuentasContables.sql" />
+    <Build Include="LEGAZPI\Views\CaptorToleranciasAutocontroles.sql" />
+    <Build Include="GALFOR\Views\CaptorProducciones.sql" />
+    <Build Include="LTFORGE\Views\Movimientos.sql" />
+    <Build Include="LEGAZPI\Views\CaptorAutocontroles.sql" />
+    <Build Include="GALFOR\Views\CaptorCalidadesProduccion.sql" />
+    <Build Include="LTFORGE\Views\Stocks.sql" />
+    <Build Include="dbo\Views\SAPRecepcionesMaterial.sql" />
+    <Build Include="GALFOR\Views\CaptorEstadosPuestos.sql" />
+    <Build Include="LTFORGE\Views\Proveedores.sql" />
+    <Build Include="GALFOR\Views\CaptorGruposOEE.sql" />
+    <Build Include="LTFORGE\Views\Recepciones.sql" />
+    <Build Include="GALFOR\Views\CaptorOFs.sql" />
+    <Build Include="LTFORGE\Views\Clientes.sql" />
+    <Build Include="dbo\Views\Fact_ForecastProduccion.sql" />
+    <Build Include="GALFOR\Views\CaptorOFsFases.sql" />
+    <Build Include="LTFORGE\Views\CarteraClientes.sql" />
+    <Build Include="dbo\Views\Fact_PresupuestoCompras.sql" />
+    <Build Include="GALFOR\Views\CaptorPresenciasOperarios.sql" />
+    <Build Include="LTFORGE\Views\Fechas.sql" />
+    <Build Include="GALFOR\Views\CaptorReferencias.sql" />
+    <Build Include="LTFORGE\Views\SAPParadas.sql" />
+    <Build Include="GALFOR\Views\CaptorTiempos.sql" />
+    <Build Include="LTFORGE\Views\SAPProducciones.sql" />
+    <Build Include="GALFOR\Views\CaptorTiposCalidades.sql" />
+    <Build Include="LTFORGE\Views\Ventas.sql" />
+    <Build Include="GALFOR\Views\CaptorTiposEstados.sql" />
+    <Build Include="AUTOFORJAS\Views\Fechas.sql" />
+    <Build Include="GALFOR\Views\CaptorToleranciasAutocontroles.sql" />
+    <Build Include="GALFOR\Views\CaptorAutocontroles.sql" />
+    <Build Include="NORMA\Views\CuentasContables.sql" />
+    <Build Include="NORMA\Views\SaldosCuentasMayor.sql" />
+    <Build Include="NORMA\Views\FechasActualizacion.sql" />
+    <Build Include="NORMA\Views\Plantas.sql" />
+    <Build Include="ORBELAN\Views\FechasActualizacion.sql" />
+    <Build Include="NORMA\Views\Materiales.sql" />
+    <Build Include="ORBELAN\Views\Plantas.sql" />
+    <Build Include="ORBELAN\Views\Materiales.sql" />
+    <Build Include="NORMA\Views\ComprasPedidosPendientes.sql" />
+    <Build Include="NORMA\Views\FamiliasCompras.sql" />
+    <Build Include="dbo\Views\Dim_Bancos.sql" />
+    <Build Include="ORBELAN\Views\ComprasPedidosPendientes.sql" />
+    <Build Include="NORMA\Views\Movimientos.sql" />
+    <Build Include="ORBELAN\Views\FamiliasCompras.sql" />
+    <Build Include="NORMA\Views\Stocks.sql" />
+    <Build Include="ORBELAN\Views\CuentasContables.sql" />
+    <Build Include="NORMA\Views\StockValoradoPeriodo.sql" />
+    <Build Include="dbo\Views\SAPProducciones.sql" />
+    <Build Include="ORBELAN\Views\Movimientos.sql" />
+    <Build Include="NORMA\Views\StockNoValoradoPeriodo.sql" />
+    <Build Include="ORBELAN\Views\Stocks.sql" />
+    <Build Include="NORMA\Views\Proveedores.sql" />
+    <Build Include="ORBELAN\Views\Proveedores.sql" />
+    <Build Include="NORMA\Views\Recepciones.sql" />
+    <Build Include="ORBELAN\Views\Recepciones.sql" />
+    <Build Include="NORMA\Views\Clientes.sql" />
+    <Build Include="ORBELAN\Views\Clientes.sql" />
+    <Build Include="NORMA\Views\CarteraClientes.sql" />
+    <Build Include="dbo\Views\Fact_CalidadesProduccion.sql" />
+    <Build Include="ORBELAN\Views\CarteraClientes.sql" />
+    <Build Include="NORMA\Views\Fechas.sql" />
+    <Build Include="dbo\Views\SAPRecepcionesSinMaterial.sql" />
+    <Build Include="ORBELAN\Views\Fechas.sql" />
+    <Build Include="NORMA\Views\SAPParadas.sql" />
+    <Build Include="ORBELAN\Views\SAPParadas.sql" />
+    <Build Include="NORMA\Views\SAPProducciones.sql" />
+    <Build Include="ORBELAN\Views\SAPProducciones.sql" />
+    <Build Include="NORMA\Views\SAPMotivosRechazo.sql" />
+    <Build Include="ORBELAN\Views\Ventas.sql" />
+    <Build Include="NORMA\Views\SAPRechazos.sql" />
+    <Build Include="dbo\Views\Dim_CalendarioFabrica.sql" />
+    <Build Include="EGANA\Views\FechasActualizacion.sql" />
+    <Build Include="NORMA\Views\Ventas.sql" />
+    <Build Include="EGANA\Views\Plantas.sql" />
+    <Build Include="EGANA\Views\Materiales.sql" />
+    <Build Include="dbo\Views\Dim_Clientes.sql" />
+    <Build Include="dbo\Views\Dim_GruposOEE.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorPuestos.sql" />
+    <Build Include="dbo\Views\SAPRecepciones.sql" />
+    <Build Include="EGANA\Views\ComprasPedidosPendientes.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorTurnos.sql" />
+    <Build Include="EGANA\Views\FamiliasCompras.sql" />
+    <Build Include="dbo\Views\Dim_OF.sql" />
+    <Build Include="dbo\Views\Dim_OFFases.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorCompanias.sql" />
+    <Build Include="dbo\Views\Dim_TiposIVA.sql" />
+    <Build Include="EGANA\Views\Movimientos.sql" />
+    <Build Include="dbo\Views\Dim_Operarios.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorProducciones.sql" />
+    <Build Include="dbo\Views\Fact_FacturasProveedor.sql" />
+    <Build Include="EGANA\Views\Stocks.sql" />
+    <Build Include="dbo\Views\Dim_OrdenesEstadisticas.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorCalidadesProduccion.sql" />
+    <Build Include="dbo\Views\Fact_FacturasLineasProveedor.sql" />
+    <Build Include="EGANA\Views\Proveedores.sql" />
+    <Build Include="dbo\Views\Dim_PedidosCompras.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorEstadosPuestos.sql" />
+    <Build Include="GALFOR\Views\CuentasContables.sql" />
+    <Build Include="EGANA\Views\Recepciones.sql" />
+    <Build Include="dbo\Views\Dim_PedidosPosCompras.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorGruposOEE.sql" />
+    <Build Include="dbo\Views\SAPMovimientos.sql" />
+    <Build Include="GALFOR\Views\SaldosCuentasMayor.sql" />
+    <Build Include="EGANA\Views\Clientes.sql" />
+    <Build Include="dbo\Views\Dim_Plantas.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorOFs.sql" />
+    <Build Include="dbo\Views\Dim_Proyectos.sql" />
+    <Build Include="GALFOR\Views\FechasActualizacion.sql" />
+    <Build Include="EGANA\Views\CarteraClientes.sql" />
+    <Build Include="dbo\Views\Dim_Proveedores.sql" />
+    <Build Include="dbo\Views\z_Fact_Inversiones.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorOFsFases.sql" />
+    <Build Include="dbo\Views\SAPComprasPedidosPendientes.sql" />
+    <Build Include="GALFOR\Views\Plantas.sql" />
+    <Build Include="EGANA\Views\Fechas.sql" />
+    <Build Include="dbo\Views\Dim_Puestos.sql" />
+    <Build Include="dbo\Views\z_Dim_Grupos.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorPresenciasOperarios.sql" />
+    <Build Include="GALFOR\Views\Materiales.sql" />
+    <Build Include="EGANA\Views\SAPParadas.sql" />
+    <Build Include="dbo\Views\Dim_TiposCalidades.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorReferencias.sql" />
+    <Build Include="dbo\Views\Fact_Produccion.sql" />
+    <Build Include="EGANA\Views\SAPProducciones.sql" />
+    <Build Include="dbo\Views\Dim_TiposEstados.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorTiempos.sql" />
+    <Build Include="GALFOR\Views\ComprasPedidosPendientes.sql" />
+    <Build Include="dbo\Views\Fact_PresenciaEnPuesto.sql" />
+    <Build Include="EGANA\Views\Ventas.sql" />
+    <Build Include="dbo\Views\Dim_TiposMovimientos.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorTiposCalidades.sql" />
+    <Build Include="GALFOR\Views\FamiliasCompras.sql" />
+    <Build Include="dbo\Views\Dim_TiposStocks.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorTiposEstados.sql" />
+    <Build Include="GALFOR\Views\Movimientos.sql" />
+    <Build Include="dbo\Views\Dim_ToleranciaAutocontroles.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorToleranciasAutocontroles.sql" />
+    <Build Include="GALFOR\Views\Stocks.sql" />
+    <Build Include="dbo\Views\Dim_Turnos.sql" />
+    <Build Include="AUTOFORJAS\Views\CaptorAutocontroles.sql" />
+    <Build Include="GALFOR\Views\StockValoradoPeriodo.sql" />
+    <Build Include="dbo\Views\Fact_Autocontroles.sql" />
+    <Build Include="TAUBATE\Views\CaptorPuestos.sql" />
+    <Build Include="GALFOR\Views\StockNoValoradoPeriodo.sql" />
+    <Build Include="TAUBATE\Views\CaptorTurnos.sql" />
+    <Build Include="GALFOR\Views\Proveedores.sql" />
+    <Build Include="dbo\Views\Dim_CuentasContables.sql" />
+    <Build Include="dbo\Views\Fact_EstadosPuesto.sql" />
+    <Build Include="GALFOR\Views\Recepciones.sql" />
+    <Build Include="dbo\Views\Dim_TipoPosicionPedido.sql" />
+    <Build Include="dbo\Views\Fact_MovimientosSAP.sql" />
+    <Build Include="dbo\Views\z_Dim_Ordenes.sql" />
+    <Build Include="TAUBATE\Views\CaptorCompanias.sql" />
+    <Build Include="GALFOR\Views\Clientes.sql" />
+    <Build Include="dbo\Views\Dim_TiposImputacion.sql" />
+    <Build Include="dbo\Views\Fact_PedidosClientes.sql" />
+    <Build Include="TAUBATE\Views\CaptorProducciones.sql" />
+    <Build Include="GALFOR\Views\CarteraClientes.sql" />
+    <Build Include="dbo\Views\Fact_PedidosComprasPosiciones.sql" />
+    <Build Include="TAUBATE\Views\CaptorCalidadesProduccion.sql" />
+    <Build Include="GALFOR\Views\Fechas.sql" />
+    <Build Include="TAUBATE\Views\CaptorEstadosPuestos.sql" />
+    <Build Include="GALFOR\Views\SAPParadas.sql" />
+    <Build Include="dbo\Views\Dim_CentrosCoste.sql" />
+    <Build Include="TAUBATE\Views\CaptorGruposOEE.sql" />
+    <Build Include="dbo\Views\Dim_HojaRuta.sql" />
+    <Build Include="GALFOR\Views\SAPProducciones.sql" />
+    <Build Include="dbo\Views\Fact_RecepcionesMaterial.sql" />
+    <Build Include="TAUBATE\Views\CaptorOFs.sql" />
+    <Build Include="dbo\Views\Dim_Pais.sql" />
+    <Build Include="dbo\Views\Dim_ListaMateriales.sql" />
+    <Build Include="GALFOR\Views\Ventas.sql" />
+    <Build Include="dbo\Views\Fact_RepartosCompras.sql" />
+    <Build Include="TAUBATE\Views\CaptorOFsFases.sql" />
+    <Build Include="dbo\Views\Dim_VersionFabricacion.sql" />
+    <Build Include="dbo\Views\Fact_SaldosCuentasMayor.sql" />
+    <Build Include="TAUBATE\Views\CaptorPresenciasOperarios.sql" />
+    <Build Include="dbo\Views\Dim_RutaSubcontratacion.sql" />
+    <Build Include="dbo\Views\Fact_StockPeriodos.sql" />
+    <Build Include="TAUBATE\Views\CaptorReferencias.sql" />
+    <Build Include="dbo\Views\Fact_Stocks.sql" />
+    <Build Include="TAUBATE\Views\CaptorTiempos.sql" />
+    <Build Include="dbo\Views\Fact_Ventas.sql" />
+    <Build Include="TAUBATE\Views\CaptorTiposCalidades.sql" />
+    <Build Include="TAUBATE\Views\CaptorTiposEstados.sql" />
+    <Build Include="TAUBATE\Views\CaptorToleranciasAutocontroles.sql" />
+    <Build Include="TAUBATE\Views\CaptorAutocontroles.sql" />
+    <Build Include="EGANA\Views\CuentasContables.sql" />
+    <Build Include="LEGAZPI\Views\CuentasContables.sql" />
+    <Build Include="LEGAZPI\Views\SaldosCuentasMayor.sql" />
+    <Build Include="LEGAZPI\Views\FechasActualizacion.sql" />
+    <Build Include="LEGAZPI\Views\Plantas.sql" />
+    <Build Include="dbo\Views\Fact_RendimientosProduccion.sql" />
+    <Build Include="LEGAZPI\Views\Materiales.sql" />
+    <Build Include="dbo\Views\Fact_FechaActualizacionDatos.sql" />
+    <Build Include="LEGAZPI\Views\ComprasPedidosPendientes.sql" />
+    <Build Include="LEGAZPI\Views\FamiliasCompras.sql" />
+    <Build Include="LEGAZPI\Views\Movimientos.sql" />
+    <Build Include="LEGAZPI\Views\Stocks.sql" />
+    <Build Include="LEGAZPI\Views\StockValoradoPeriodo.sql" />
+    <Build Include="LEGAZPI\Views\StockNoValoradoPeriodo.sql" />
+    <Build Include="LEGAZPI\Views\Proveedores.sql" />
+    <Build Include="LEGAZPI\Views\Recepciones.sql" />
+    <Build Include="LEGAZPI\Views\Clientes.sql" />
+    <Build Include="LEGAZPI\Views\CarteraClientes.sql" />
+    <Build Include="LEGAZPI\Views\Fechas.sql" />
+    <Build Include="LEGAZPI\Views\SAPParadas.sql" />
+    <Build Include="LEGAZPI\Views\SAPProducciones.sql" />
+    <Build Include="Security\RPUser.sql" />
+    <Build Include="Security\RPUser_1.sql" />
+    <Build Include="Security\UserWriter.sql" />
+    <Build Include="Security\UserWriter_1.sql" />
+    <Build Include="Security\ROGALFOR.sql" />
+    <Build Include="Security\ROGALFOR_1.sql" />
+    <Build Include="Security\ROLTFORGE.sql" />
+    <Build Include="Security\ROLTFORGE_1.sql" />
+    <Build Include="Security\ROFORJA.sql" />
+    <Build Include="Security\ROFORJA_1.sql" />
+    <Build Include="Security\RONORMA.sql" />
+    <Build Include="Security\RONORMA_1.sql" />
+    <Build Include="Security\ROAUTOFORJAS.sql" />
+    <Build Include="Security\ROAUTOFORJAS_1.sql" />
+    <Build Include="Security\NT SERVICE_MSSQLServerOLAPService.sql" />
+    <Build Include="Security\NT SERVICE_MSSQLServerOLAPService_1.sql" />
+    <Build Include="Security\ROLEGAZPI.sql" />
+    <Build Include="Security\ROLEGAZPI_1.sql" />
+    <Build Include="Security\ROORBELAN.sql" />
+    <Build Include="Security\ROORBELAN_1.sql" />
+    <Build Include="Security\ROEGANA.sql" />
+    <Build Include="Security\ROEGANA_1.sql" />
+    <Build Include="Security\CIE_dblanco.sql" />
+    <Build Include="Security\CIE_dblanco_1.sql" />
+    <Build Include="Security\admin_leg.sql" />
+    <Build Include="dbo\Stored Procedures\sp_VariablesPlant.sql" />
+    <Build Include="Security\AUTOFORJAS.sql" />
+    <Build Include="Security\CIE_dblanco_2.sql" />
+    <Build Include="Security\EGANA.sql" />
+    <Build Include="Security\FORJA.sql" />
+    <Build Include="Security\GALFOR.sql" />
+    <Build Include="Security\LEGAZPI.sql" />
+    <Build Include="Security\LTFORGE.sql" />
+    <Build Include="Security\NORMA.sql" />
+    <Build Include="Security\ORBELAN.sql" />
+    <Build Include="Security\ORBLEAN.sql" />
+    <Build Include="Security\TAUBATE.sql" />
+  </ItemGroup>
+</Project>

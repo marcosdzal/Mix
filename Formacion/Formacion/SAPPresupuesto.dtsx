@@ -1,0 +1,2052 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/22/2016 3:56:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GAL-DBLANCOA"
+  DTS:CreatorName="CIE\dblanco"
+  DTS:DTSID="{688C5314-61B5-4D9C-BB13-384855C47A0D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="SAPRFCPresupuesto"
+  DTS:PackageType="5"
+  DTS:VersionBuild="374"
+  DTS:VersionGUID="{CA2B55BD-C100-44CA-925F-47B4F41C4480}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="11"
+      DTS:DTSID="{39D373CE-7D70-4E05-9BC4-47730675FEEA}"
+      DTS:ObjectName="UpdateAll">
+      <DTS:Property
+        DTS:DataType="11"
+        DTS:Name="ParameterValue">-1</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09FA9931-45C8-46BA-B1D6-9779401A5CA5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Calendar">
+      <DTS:VariableValue
+        DTS:DataType="8">GA</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64489F50-32A0-437D-B23C-F69F517654C6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Currency">
+      <DTS:VariableValue
+        DTS:DataType="8">EUR</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{778328D3-DF24-49F6-AEAE-C3DF3D170426}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentMonth">
+      <DTS:VariableValue
+        DTS:DataType="2">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3ED9E52F-3601-4F76-92E8-D7C7ED5CA0FE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentYear">
+      <DTS:VariableValue
+        DTS:DataType="2">2019</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{020EB246-39E1-4B1B-9122-126F71B4076D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DaysToUpdate">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D521E8F3-C2C5-4CB2-8F68-28B8A645526C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IdConnection">
+      <DTS:VariableValue
+        DTS:DataType="3">2</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{29277E78-2857-4A70-B689-DC3E48C1CA7C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PIBUKRS">
+      <DTS:VariableValue
+        DTS:DataType="8">Z013</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2535F5AD-98D8-44E2-9B03-E232B2EF37D2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PIGJAHR">
+      <DTS:VariableValue
+        DTS:DataType="3">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F68BA2E7-10C7-4FAC-AF19-09FA69502BE5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreciosDesdeVentas">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{332EE449-4D9E-4DA5-9B19-6B87A0DCD49A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SalesOrg">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F4EBD12-EF83-477F-BD5B-71C136B84FA1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SalesOrgTemp">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19F38E34-5604-4F88-ACF5-E6701590A09E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SalesPreviousMonths">
+      <DTS:VariableValue
+        DTS:DataType="2">3</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5684E0C5-3F0C-414E-A129-B483B1B6388A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SalesRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A5501147-0FEC-4DD6-B838-5751F22E1EFD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPClient">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19562969-BB34-4D15-B38C-FBF3805B5F73}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPHost">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7E69E9B4-891A-41C5-9EFC-C44EB4B0842C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPIdleTimeOut">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6E6D89A9-C868-4EB2-BE14-3A82D710A364}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPLanguage">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DFF2B030-2B63-447D-9CC7-F2AC39FBDE4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPMaxPoolSize">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E923EB14-A06A-4C95-8802-2650AABFEE5A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D15E1056-9119-47FE-B1DD-146FC41E6724}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPPassword">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF61E734-2FC6-463F-BC89-4ACB9DD160D1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPSystemNumber">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{181F4CB5-2333-4BC1-9FC3-3250400D17D9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SAPUser">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D4A6EFDD-C18E-43EA-B476-9A9D10C2338E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Sociedad">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETLPresupuesto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{8140231a-945b-4dcb-9ba4-95af720cb4ce}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETLPresupuesto"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETLPresupuesto\Añade_Sociedad_Año"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Añade_Sociedad_Año"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\ETLPresupuesto\Añade_Sociedad_Año.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Sociedad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Sociedad]"
+                      name="Sociedad"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::Sociedad]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::Sociedad]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Ano]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Ano]"
+                      name="Ano"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::CurrentYear]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::CurrentYear]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Planta]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Planta]"
+                      name="Planta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Project::Plant]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Project::Plant]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\ETLPresupuesto\Añade_Sociedad_Año.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Incluye y ejecuta código de scripts personalizados. Por ejemplo, se usa para aplicar una regla de negocios que limita el intervalo de valores válidos de una columna de ingresos o para sumar los valores de dos columnas y calcular el promedio de la suma.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;8"
+              description="Incluye y ejecuta código de scripts personalizados. Por ejemplo, se usa para aplicar una regla de negocios que limita el intervalo de valores válidos de una columna de ingresos o para sumar los valores de dos columnas y calcular el promedio de la suma."
+              name="SAP_Function_ZRFC_CO_GET_PRESUPUESTADO"
+              version="12">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Almacena el código fuente del componente"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[My Project\AssemblyInfo.vb]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("SC_22c8160f954746acadb23fcb4f3028c4")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyProduct("SC_22c8160f954746acadb23fcb4f3028c4")> 
+<Assembly: AssemblyCopyright("Copyright @  2016")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("89331e98-9c56-4edd-948f-6ecbf51b26fd")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.vb]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[' THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+' Microsoft SQL Server Integration Services component wrapper
+' This module defines the base class for your component
+' THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+
+Imports System
+Imports System.Data
+Imports Microsoft.SqlServer.Dts.Pipeline
+Imports Microsoft.SqlServer.Dts.Pipeline.Wrapper
+Imports Microsoft.SqlServer.Dts.Runtime.Wrapper
+
+<CLSCompliant(False)> _
+Public Class UserComponent
+    Inherits ScriptComponent
+
+    Public Connections As New Connections(Me)
+    Public Variables As New Variables(Me)
+
+    Public SAPPricesBuffer As SAPPricesBuffer
+
+    Public Overridable Sub FinishOutputs()
+    End Sub
+
+    Private Sub MarkOutputsFinished()
+
+        If SAPPricesBuffer IsNot Nothing Then
+            SAPPricesBuffer.SetEndOfRowset
+            SAPPricesBuffer = Nothing
+        End If
+
+    End Sub
+
+    Public Overrides Sub PrimeOutput(ByVal Outputs As Integer, ByVal OutputIDs() As Integer, ByVal Buffers() As PipelineBuffer, ByVal OutputMap As OutputNameMap)
+
+        For I As Integer = 0 To Outputs - 1
+            If OutputIDs(I) = GetOutputID(OutputMap, "SAPPrices") Then
+                SAPPricesBuffer = New SAPPricesBuffer(Buffers(I), GetColumnIndexes(OutputIDs(I)), OutputMap)
+            End If
+        Next
+
+        CreateNewOutputRows()
+
+        FinishOutputs()
+        MarkOutputsFinished()
+
+    End Sub
+
+    Public Overridable Sub CreateNewOutputRows()
+    End Sub
+
+End Class
+
+<CLSCompliant(False)> _
+Public Class Connections
+
+    Dim ParentComponent As ScriptComponent
+
+    <CLSCompliant(False)> _
+    Public Sub New(ByVal Component As ScriptComponent)
+        ParentComponent = Component
+    End Sub
+
+    Public ReadOnly Property DBConnection() As IDTSConnectionManager100
+        Get
+            Return ParentComponent.ComponentMetaData.RuntimeConnectionCollection.GetRuntimeConnectionByName("DBConnection").ConnectionManager
+        End Get
+    End Property
+
+End Class
+
+<CLSCompliant(False)> _
+Public Class Variables
+
+    Dim ParentComponent As ScriptComponent
+
+    <CLSCompliant(False)> _
+    Public Sub New(ByVal Component As ScriptComponent)
+        ParentComponent = Component
+    End Sub
+
+    Public ReadOnly Property [CurrentYear]() As Int16
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("CurrentYear").GetValueWithContext(ScriptComponent.EvaluatorContext), Int16)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPClient]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPClient").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPHost]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPHost").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPIdleTimeOut]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPIdleTimeOut").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPLanguage]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPLanguage").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPMaxPoolSize]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPMaxPoolSize").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPName]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPName").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPPassword]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPPassword").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPSystemNumber]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPSystemNumber").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [SAPUser]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("SAPUser").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+    Public ReadOnly Property [Sociedad]() As String
+        Get
+            Return CType(ParentComponent.ReadOnlyVariables("Sociedad").GetValueWithContext(ScriptComponent.EvaluatorContext), String)
+        End Get
+    End Property
+
+End Class
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_22c8160f954746acadb23fcb4f3028c4.vbproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6347BB5E-E692-412C-9CA5-7E8488ADAF90}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>My Project</AppDesignerFolder>
+    <RootNamespace>SC_22c8160f954746acadb23fcb4f3028c4</RootNamespace>
+    <AssemblyName>SC_90D182B751894212959CA9162E9AA56C</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- This sections specifies references for the project. -->
+  <ItemGroup>
+    <Reference Include="SAPConnectionManager">
+      <HintPath>D:\LibreriasConexionDefinitivas\Proyecto\SAPConnectionManager.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco">
+      <HintPath>D:\LibreriasConexionDefinitivas\Proyecto\sapnco.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco_utils">
+      <HintPath>D:\LibreriasConexionDefinitivas\Proyecto\sapnco_utils.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=15.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.vb" />
+    <Compile Include="BufferWrapper.vb" />
+    <Compile Include="ComponentWrapper.vb" />
+  </ItemGroup>
+  <!-- Visual Basic supports Importing namespaces (equivalent to using statements in C#).-->
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="My Project\" />
+    <Compile Include="My Project\AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a VB project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="devenv.exe" DebugInfoCommandLine="/vstaHostDebugUri:&quot;vstadebugf417d6a9-199c-49d1-952c-e79e3969fe80/5ea2c857-a05e-4c1e-922a-4199838b022c&quot;" />
+        <Host Name="SSIS_SC110" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC150</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.vb]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[' THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+' Microsoft SQL Server Integration Services buffer wrappers
+' This module defines classes for accessing data flow buffers
+' THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+
+
+Option Strict Off   ' This allows usage of PipelineBuffer typed accessors.
+
+Imports System
+Imports System.Data
+Imports Microsoft.SqlServer.Dts.Pipeline
+Imports Microsoft.SqlServer.Dts.Pipeline.Wrapper
+
+<CLSCompliant(False)> _
+Public Class SAPPricesBuffer
+    Inherits ScriptBuffer
+
+    Public Sub New(ByVal Buffer As PipelineBuffer, ByVal BufferColumnIndexes As Integer(), ByVal OutputMap As OutputNameMap)
+        MyBase.New(Buffer, BufferColumnIndexes, OutputMap)
+    End Sub
+
+    Public WriteOnly Property [Orden]() As String
+        Set
+            Me(0) = Value
+        End Set
+    End Property
+    Public WriteOnly Property [Orden_IsNull] As Boolean
+        Set
+            If (value)
+                SetNull(0)
+            Else
+                Throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.")
+            End If
+        End Set
+    End Property
+
+    Public WriteOnly Property [Presupuesto]() As Double
+        Set
+            Me(1) = Value
+        End Set
+    End Property
+    Public WriteOnly Property [Presupuesto_IsNull] As Boolean
+        Set
+            If (value)
+                SetNull(1)
+            Else
+                Throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.")
+            End If
+        End Set
+    End Property
+
+    Public Overloads Sub AddRow()
+        MyBase.AddRow()
+    End Sub
+
+    Public Overloads Sub SetEndOfRowset()
+        MyBase.SetEndOfRowset()
+    End Sub
+
+    Public Overloads Function EndOfRowset() As Boolean
+        EndOfRowset = MyBase.EndOfRowset
+    End Function
+
+End Class
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[My Project\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.vb]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#Region "Help:  Introduction to the Script Component"
+' The Script Component allows you to perform virtually any operation that can be accomplished in
+' a .Net application within the context of an Integration Services data flow.
+
+' Expand the other regions which have "Help" prefixes for examples of specific ways to use
+' Integration Services features within this script component.
+#End Region
+
+#Region "Imports"
+Imports System
+Imports System.Data
+Imports System.Data.OleDb
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Pipeline.Wrapper
+Imports Microsoft.SqlServer.Dts.Runtime.Wrapper
+Imports SAP.Middleware.Connector
+#End Region
+
+' This is the class to which to add your code.  Do not change the name, attributes, or parent
+' of this class.
+<Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute()>
+<CLSCompliant(False)>
+Public Class ScriptMain
+    Inherits UserComponent
+    Dim params As RfcConfigParameters
+    Private SapRfcResultTable As IRfcTable
+    Private con As OleDbConnection
+
+#Region "Help:  Using Integration Services variables and parameters"
+    'To use a variable in this script, first ensure that the variable has been added to
+    'either the list contained in the ReadOnlyVariables property or the list contained in
+    'the ReadWriteVariables property of this script component, according to whether or not your
+    'code needs to write into the variable.  To do so, save this script, close this instance of
+    'Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties.
+    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
+
+    'Example of reading from a variable or parameter:
+    ' startTime = Variables.MyStartTime;
+
+    'Example of writing to a variable:
+    ' Variables.myStringVariable = "new value";
+#End Region
+
+#Region "Help:  Using Integration Services Connnection Managers"
+    'Some types of connection managers can be used in this script component.  See the help topic
+    '"Working with Connection Managers Programatically" for details.
+
+    'To use a connection manager in this script, first ensure that the connection manager has
+    'been added to either the list of connection managers on the Connection Managers page of the
+    'script component editor.  To add the connection manager, save this script, close this instance of
+    ' Visual Studio, and add the Connection Manager to the list.
+
+    'If the component needs to hold a connection open while processing rows, override the
+    'AcquireConnections and ReleaseConnections methods.
+
+    'Example of using an ADO.Net connection manager to acquire a SqlConnection:
+    ' Dim rawConnection As Object = Connections.SalesDB.AcquireConnection(Transaction)
+    ' Dim salesDBConn As SqlConnection = CType(rawConnection, SqlConnection)
+
+    'Example of using a File connection manager to acquire a file path:
+    ' Dim rawConnection As Object = Connections.Prices_zip.AcquireConnection(Transaction)
+    ' Dim filePath As String = CType(rawConnection, String)
+
+    'Example of releasing a connection manager:
+    ' Connections.SalesDB.ReleaseConnection(rawConnection)
+#End Region
+
+#Region "Help:  Firing Integration Services Events"
+    'This script component can fire events.
+
+    'Example of firing an error event:
+    ' ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, cancel)
+
+    'Example of firing an information event:
+    ' ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain)
+
+    'Example of firing a warning event:
+    ' ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0)
+
+#End Region
+
+    'This method is called once, before rows begin to be processed in the data flow.
+    '
+    'You can remove this method if you don't need to do anything here.
+    Public Overrides Sub PreExecute()
+        MyBase.PreExecute()
+
+        params = New RfcConfigParameters()
+        params.Add(RfcConfigParameters.Name, Trim(Me.Variables.SAPName))
+        params.Add(RfcConfigParameters.AppServerHost, Trim(Me.Variables.SAPHost))
+        params.Add(RfcConfigParameters.SystemNumber, Trim(Me.Variables.SAPSystemNumber))
+        params.Add(RfcConfigParameters.User, Trim(Me.Variables.SAPUser))
+        params.Add(RfcConfigParameters.Password, Trim(Me.Variables.SAPPassword))
+        params.Add(RfcConfigParameters.Client, Trim(Me.Variables.SAPClient))
+        params.Add(RfcConfigParameters.Language, Trim(Me.Variables.SAPLanguage))
+        params.Add(RfcConfigParameters.PoolSize, Trim(Me.Variables.SAPMaxPoolSize))
+
+        'Private SapRfcDestination As RfcDestination
+        'Private SapRfcRepository As RfcRepository
+        'Private SapRfcFunction As IRfcFunction
+
+        Dim SapRfcDestination As RfcDestination = GetDestination(params)
+
+        Dim SapRfcRepository As RfcRepository = GetRepository(SapRfcDestination)
+
+        Dim SapRfcFunction As IRfcFunction = SapRfcRepository.CreateFunction("ZRFC_CO_GET_PRESUPUESTADO")
+
+        'Parámetros de la funcion
+        SapRfcFunction.SetValue("PI_BUKRS", Me.Variables.Sociedad)
+        SapRfcFunction.SetValue("PI_GJAHR", Me.Variables.CurrentYear)
+
+        'Llamada a la funcion
+        SapRfcFunction.Invoke(SapRfcDestination)
+
+        'Tabla Resultado
+        'Datos
+        SapRfcResultTable = SapRfcFunction.GetTable("PTO_PRESUP")
+
+        con = New OleDbConnection(Me.Connections.DBConnection.ConnectionString)
+        con.Open()
+
+    End Sub
+
+    ' This method is called after all the rows have passed through this component.
+    '
+    ' You can delete this method if you don't need to do anything here.
+    Public Overrides Sub PostExecute()
+        MyBase.PostExecute()
+        '
+        ' Add your code here
+        '
+        Me.con.Close()
+    End Sub
+
+    Public Overrides Sub CreateNewOutputRows()
+        '
+        ' Add rows by calling the AddRow method on the member variable named "<Output Name>Buffer".
+        ' For example, call MyOutputBuffer.AddRow() if your output was named "MyOutput".
+        With SapRfcResultTable
+            For i As Integer = 0 To SapRfcResultTable.RowCount - 1
+                'DataRowsFromRFC
+                SAPPricesBuffer.AddRow()
+
+                SAPPricesBuffer.Orden = .Item(i).GetString("OBJNR")
+                SAPPricesBuffer.Presupuesto = .Item(i).GetFloat("WTJHR")
+
+
+            Next '
+        End With
+
+    End Sub
+
+
+    Function GetDestination(ByVal params As RfcConfigParameters) As RfcDestination
+        Return RfcDestinationManager.GetDestination(params)
+    End Function
+    '
+    'Return SAP Repository
+    '
+    Function GetRepository(ByVal SapRfcDestination As RfcDestination) As RfcRepository
+        'Create connection to the RFC repository
+        Return SapRfcDestination.Repository
+    End Function
+
+End Class
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_22c8160f954746acadb23fcb4f3028c4</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_22c8160f954746acadb23fcb4f3028c4</msb:DisplayName>
+    <msb:ProjectId>{A1EA157F-6D71-4285-BCCB-5FEF09C89FD9}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_22c8160f954746acadb23fcb4f3028c4.vbproj" />
+    <msb:File Include="My Project\Resources.Designer.vb" />
+    <msb:File Include="main.vb" />
+    <msb:File Include="BufferWrapper.vb" />
+    <msb:File Include="My Project\Settings.Designer.vb" />
+    <msb:File Include="My Project\Resources.resx" />
+    <msb:File Include="ComponentWrapper.vb" />
+    <msb:File Include="My Project\AssemblyInfo.vb" />
+    <msb:File Include="My Project\Settings.settings" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[My Project\Settings.Designer.vb]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[My Project\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[My Project\Resources.Designer.vb]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Almacena la representación binaria del componente"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_90D182B751894212959CA9162E9AA56C.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[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
+Cw3kAFkBewoGAFkBMAHtAFkBUQz1AFkBcQH7AMEB0gcBAckBrwIHAdEBpQkOAVkBJwwUAdkB/gYa
+AVkBDw4hAeEB4A0nAfkBgg0uAfkBTgYzAQEC4wU4AWkBewoGAAkCSwo9AQkCFw09AcEAdQxCAcEA
+MAKqAMEATgaeABECCAJPATwA1g1mAUQAzwVKAEQA2QV9AUQAewoGACkAqwAtBC4ACwCmAi4AEwCv
+Ai4AGwDOAi4AIwDXAi4AKwAAAy4AMwAAAy4AOwDXAi4AQwAGAy4ASwAAAy4AUwAdAy4AWwAAAy4A
+YwAjAy4AawBNAy4AcwBaA0AAiwCkA0AAgwCpA0MAewCyA0MAgwCpA0kAqwA+BGMAewCyA2MAgwCp
+A2kAqwBSBIAAiwCkA4MAkwCkA4MAmwCkA4MAewCyA4kAqwBfBKAAiwCkA6kAgwDOAsAAiwCkA8MA
+swCkA8MAUwAAA8kAgwDOAuAAiwCkA+MAUwAAAwMBUwAAAyMBUwAAA0MBUwAAA4MBgwCpA4MBowDL
+A6MBgwCpA6MBWwAAA+kCuwCkA+ADUwAAAyAEUwAAAwAGgwCpAwAGiwCkAyAGgwCpAyAGiwCkA0AG
+gwCpA0AGiwCkA2AGgwCpA2AGiwCkA4AGiwCkA6AGiwCkA8AGiwCkA8AGgwCpA+AGiwCkAwAHiwCk
+AwAHgwCpA2UAogDgAOgARwFaAQQAAQAFAAUABwAHAAkACwAKAAwACwAXAA0AGAAAAGAKaAIAAGkH
+bQIAAEYKcgIAAPYKdwIAAH8JfAIAAB0DgQIAACAHhgIAANIGigIAAGAIjgIAAOMGigIAAPYHkgIA
+AM8ImAIAACANhgIAAI4NhgIAALsNhgIAAEAChgIAAP8FhgIAAKcChgIAAPwBhgIAAN8IhgIAADoK
+hgIAANcBhgIAAPUFnAIAABsCoQICAAQAAwACAAUABQACAAYABwACAAcACQACAAkACwACAAoADQAB
+AAsADQABABMADwABABQAEQABABUAEwABABYAFQACACAAFwACACIAGQACACMAGwACACQAHQACACUA
+HwACACYAIQACACcAIwACACgAJQACACkAJwACACoAKQACACsAKwACACwALQACAC8ALwACADcAMQAu
+ADUAPABDAHMATAFfAW4BdQEEgAAAAQAAAAAAAAAAAAAAAAAMAQAABAAAAAAAAAAAAAAAgwGZAQAA
+AAAEAAAAAAAAAAAAAACDARAHAAAAAAoAAAAAAAAAAAAAAIwBvQEAAAAADwAAAAAAAAAAAAAAlQFl
+DQAAAAADAAAAAAAqAAAAAACeAUkIAAAAAAQAAAAAAAAAAAAAAIMBZQEAAAAADwAAAAAAAAAAAAAA
+lQGWDQAAAAAPAAAAAAAAAAAAAACVAYQIAAAAAA8AAAAAAAAAAAAAAJUBpwgAAAAAAAAAAAEAAADg
+CwAADAAEAA0ABAAAABAAGgA8AQAAEABpADwBAAAAAGsAPAGrAFUBqwB4AQAAAElEVFNDb21wb25l
+bnRNZXRhRGF0YTEwMABJRFRTVmFyaWFibGUxMDAASURUU1J1bnRpbWVDb25uZWN0aW9uQ29sbGVj
+dGlvbjEwMABJRFRTUnVudGltZUNvbm5lY3Rpb24xMDAASURUU0Nvbm5lY3Rpb25NYW5hZ2VyMTAw
+AElEVFNWYXJpYWJsZXMxMDAASURUU0V2YWx1YXRvckNvbnRleHQxMDAAQ29udGV4dFZhbHVlYDEA
+VGhyZWFkU2FmZU9iamVjdFByb3ZpZGVyYDEARGljdGlvbmFyeWAyAFNDXzIyYzgxNjBmOTU0NzQ2
+YWNhZGIyM2ZjYjRmMzAyOGM0ADxNb2R1bGU+AFNDXzkwRDE4MkI3NTE4OTQyMTI5NTlDQTkxNjJF
+OUFBNTZDAEdldE91dHB1dElEAFQARGlzcG9zZV9fSW5zdGFuY2VfXwBDcmVhdGVfX0luc3RhbmNl
+X18AU3lzdGVtLkRhdGEAZ2V0X0NvbXBvbmVudE1ldGFEYXRhAFN5c3RlbS5EYXRhLk9sZURiAG1z
+Y29ybGliAFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljAE1pY3Jvc29mdC5WaXN1YWxCYXNpYwBn
+ZXRfU29jaWVkYWQAQWRkAE1hcmtPdXRwdXRzRmluaXNoZWQAZ2V0X1NBUFBhc3N3b3JkAENyZWF0
+ZUluc3RhbmNlAGdldF9HZXRJbnN0YW5jZQBpbnN0YW5jZQBHZXRIYXNoQ29kZQBnZXRfU0FQTGFu
+Z3VhZ2UASW52b2tlAElSZmNUYWJsZQBHZXRUYWJsZQBTYXBSZmNSZXN1bHRUYWJsZQBEb3VibGUA
+UnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAZ2V0X1NBUE5hbWUAR2V0UnVudGlt
+ZUNvbm5lY3Rpb25CeU5hbWUATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUGlwZWxpbmUAR2V0VHlw
+ZQBJUmZjU3RydWN0dXJlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAF9yZXNDdWx0dXJlAEFwcGxp
+Y2F0aW9uQmFzZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBDbG9zZQBFZGl0b3JCcm93c2FibGVT
+dGF0ZQBHdWlkQXR0cmlidXRlAEhlbHBLZXl3b3JkQXR0cmlidXRlAEdlbmVyYXRlZENvZGVBdHRy
+aWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVk
+aXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBDb21WaXNpYmxlQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVB
+dHRyaWJ1dGUAU3RhbmRhcmRNb2R1bGVBdHRyaWJ1dGUASGlkZU1vZHVsZU5hbWVBdHRyaWJ1dGUA
+QXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAERlYnVn
+Z2VySGlkZGVuQXR0cmlidXRlAEFzc2VtYmx5RmlsZVZlcnNpb25BdHRyaWJ1dGUATXlHcm91cENv
+bGxlY3Rpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlv
+blJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNv
+cHlyaWdodEF0dHJpYnV0ZQBDTFNDb21wbGlhbnRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVu
+dEVudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21w
+YXRpYmlsaXR5QXR0cmlidXRlAFByZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAbV9WYWx1ZQBnZXRfVmFs
+dWUAc2V0X1ZhbHVlAEdldE9iamVjdFZhbHVlAFNldFZhbHVlAGdldF9TQVBNYXhQb29sU2l6ZQBT
+eXN0ZW0uVGhyZWFkaW5nAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAZ2V0X0Nvbm5lY3Rpb25T
+dHJpbmcAVG9TdHJpbmcAR2V0U3RyaW5nAE1hdGgATWljcm9zb2Z0LlZpc3VhbEJhc2ljLk15U2Vy
+dmljZXMuSW50ZXJuYWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNDXzkwRDE4MkI3NTE4OTQyMTI5
+NTlDQTkxNjJFOUFBNTZDLmRsbABzZXRfT3JkZW5fSXNOdWxsAHNldF9QcmVzdXB1ZXN0b19Jc051
+bGwAU2V0TnVsbABnZXRfSXRlbQBzZXRfSXRlbQBTeXN0ZW0AVHJpbQBzZXRfT3JkZW4AT3BlbgBT
+eXN0ZW0uQ29tcG9uZW50TW9kZWwuRGVzaWduAFNjcmlwdE1haW4AY29uAGdldF9BcHBsaWNhdGlv
+bgBNeUFwcGxpY2F0aW9uAFNhcFJmY0Rlc3RpbmF0aW9uAEdldERlc3RpbmF0aW9uAFN5c3RlbS5D
+b25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5c3RlbS5SZWZsZWN0aW9uAGdldF9S
+dW50aW1lQ29ubmVjdGlvbkNvbGxlY3Rpb24AZ2V0X0RCQ29ubmVjdGlvbgBPbGVEYkNvbm5lY3Rp
+b24ASVJmY0Z1bmN0aW9uAENyZWF0ZUZ1bmN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24A
+c2FwbmNvAEN1bHR1cmVJbmZvAHNldF9QcmVzdXB1ZXN0bwBPdXRwdXROYW1lTWFwAE91dHB1dE1h
+cABNaWNyb3NvZnQuU3FsU2VydmVyLkRUU1J1bnRpbWVXcmFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+RFRTUGlwZWxpbmVXcmFwAGdldF9DdXJyZW50WWVhcgBnZXRfU0FQU3lzdGVtTnVtYmVyAG1fQXBw
+T2JqZWN0UHJvdmlkZXIAbV9Vc2VyT2JqZWN0UHJvdmlkZXIAbV9Db21wdXRlck9iamVjdFByb3Zp
+ZGVyAG1fTXlXZWJTZXJ2aWNlc09iamVjdFByb3ZpZGVyAFBpcGVsaW5lQnVmZmVyAFNBUFByaWNl
+c0J1ZmZlcgBTY3JpcHRCdWZmZXIAZ2V0X1Jlc291cmNlTWFuYWdlcgBSZmNEZXN0aW5hdGlvbk1h
+bmFnZXIAZ2V0X0Nvbm5lY3Rpb25NYW5hZ2VyAFN5c3RlbS5Db2RlRG9tLkNvbXBpbGVyAElSZmNE
+YXRhQ29udGFpbmVyAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUuV3JhcHBlcgBNaWNy
+b3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZS5XcmFwcGVyAGdldF9TQVBVc2VyAGdldF9Vc2Vy
+AEVudGVyAGdldF9Db21wdXRlcgBNeUNvbXB1dGVyAF9yZXNNZ3IAQWN0aXZhdG9yAC5jdG9yAC5j
+Y3RvcgBTQVAuTWlkZGxld2FyZS5Db25uZWN0b3IATW9uaXRvcgBPdXRwdXRJRHMAU3lzdGVtLkRp
+YWdub3N0aWNzAE1pY3Jvc29mdC5WaXN1YWxCYXNpYy5EZXZpY2VzAGdldF9XZWJTZXJ2aWNlcwBN
+eVdlYlNlcnZpY2VzAE1pY3Jvc29mdC5WaXN1YWxCYXNpYy5BcHBsaWNhdGlvblNlcnZpY2VzAFN5
+c3RlbS5SdW50aW1lLkludGVyb3BTZXJ2aWNlcwBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuQ29tcGls
+ZXJTZXJ2aWNlcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJj
+ZXMAU0NfMjJjODE2MGY5NTQ3NDZhY2FkYjIzZmNiNGYzMDI4YzQuTXkuUmVzb3VyY2VzAE15UmVz
+b3VyY2VzAFNDXzIyYzgxNjBmOTU0NzQ2YWNhZGIyM2ZjYjRmMzAyOGM0LlJlc291cmNlcy5yZXNv
+dXJjZXMARGVidWdnaW5nTW9kZXMAZ2V0X1JlYWRPbmx5VmFyaWFibGVzAEJ1ZmZlckNvbHVtbklu
+ZGV4ZXMAR2V0Q29sdW1uSW5kZXhlcwBTdHJpbmdzAE15U2V0dGluZ3MARXF1YWxzAHBhcmFtcwBD
+b252ZXJzaW9ucwBDb25uZWN0aW9ucwBCdWZmZXJzAFJ1bnRpbWVIZWxwZXJzAFJmY0NvbmZpZ1Bh
+cmFtZXRlcnMARmluaXNoT3V0cHV0cwBDcmVhdGVOZXdPdXRwdXRSb3dzAEdldEZsb2F0AG1fU3lu
+Y09iamVjdABNeVByb2plY3QAU2V0RW5kT2ZSb3dzZXQARXhpdABnZXRfU0FQQ2xpZW50AFVzZXJD
+b21wb25lbnQAUGFyZW50Q29tcG9uZW50AFNjcmlwdENvbXBvbmVudABnZXRfUm93Q291bnQATWlj
+cm9zb2Z0LlNxbFNlcnZlci5UeFNjcmlwdABUb1Nob3J0AGdldF9TQVBIb3N0AE1pY3Jvc29mdC5T
+cWxTZXJ2ZXIuUGlwZWxpbmVIb3N0AGdldF9TQVBJZGxlVGltZU91dABQcmltZU91dHB1dABtX0Nv
+bnRleHQAR2V0VmFsdWVXaXRoQ29udGV4dABTY3JpcHRDb21wb25lbnRFdmFsQ29udGV4dABnZXRf
+RXZhbHVhdG9yQ29udGV4dABBZGRSb3cAU0NfMjJjODE2MGY5NTQ3NDZhY2FkYjIzZmNiNGYzMDI4
+YzQuTXkAZ2V0X0Fzc2VtYmx5AGdldF9SZXBvc2l0b3J5AFJmY1JlcG9zaXRvcnkAR2V0UmVwb3Np
+dG9yeQAAAAAxTQB5AC4AUgBlAHMAbwB1AHIAYwBlAHMALgBNAHkAUgBlAHMAbwB1AHIAYwBlAHMA
+AAlOAEEATQBFAAANQQBTAEgATwBTAFQAAAtTAFkAUwBOAFIAAAlVAFMARQBSAAANUABBAFMAUwBX
+AEQAAA1DAEwASQBFAE4AVAAACUwAQQBOAEcAABNQAE8ATwBMAF8AUwBJAFoARQAAM1oAUgBGAEMA
+XwBDAE8AXwBHAEUAVABfAFAAUgBFAFMAVQBQAFUARQBTAFQAQQBEAE8AABFQAEkAXwBCAFUASwBS
+AFMAABFQAEkAXwBHAEoAQQBIAFIAABVQAFQATwBfAFAAUgBFAFMAVQBQAAALTwBCAEoATgBSAAAL
+VwBUAEoASABSAACAm0kAcwBOAHUAbABsACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQA
+IABiAGUAIABzAGUAdAAgAHQAbwAgAEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBh
+AGwAdQBlACAAdABvACAAdABoAGUAIABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAE1MA
+QQBQAFAAcgBpAGMAZQBzAAAZRABCAEMAbwBuAG4AZQBjAHQAaQBvAG4AABdDAHUAcgByAGUAbgB0
+AFkAZQBhAHIAABNTAEEAUABDAGwAaQBlAG4AdAAAD1MAQQBQAEgAbwBzAHQAAB1TAEEAUABJAGQA
+bABlAFQAaQBtAGUATwB1AHQAABdTAEEAUABMAGEAbgBnAHUAYQBnAGUAAB1TAEEAUABNAGEAeABQ
+AG8AbwBsAFMAaQB6AGUAAA9TAEEAUABOAGEAbQBlAAAXUwBBAFAAUABhAHMAcwB3AG8AcgBkAAAf
+UwBBAFAAUwB5AHMAdABlAG0ATgB1AG0AYgBlAHIAAA9TAEEAUABVAHMAZQByAAARUwBvAGMAaQBl
+AGQAYQBkAAAAACHdN6g1sBVMmPeaWbEYMUIABCABAQgDIAABBSABARERBCABAQ4EIAEBAgUgAgEO
+DgUgAQERRQcgBAEODg4OBhUSNAESDAYVEjQBEggGFRI0ARJlBhUSNAESMAQgABMABwABEm0RgL0F
+IAASgMEHIAIBDhKAwQgHAhKAlRKAmQQAAQ4OBxUSgMkCDg4HIAIBEwATAQYgARKAmQ4FIAIBDgYG
+IAEBEoCVBiABEoCJDgMgAA4HBwMSgIkICAMgAAgGIAESgNEIBCABDg4EIAEMDggAARKAlRKAhQUg
+ABKAnQsgAwESgKUdCBKAqQUgAgEIHAMHAQIDIAACBAcCCAgHAAIIEoCpDgUgAR0ICAUgABKA4QUg
+ABKA5QYgARKA6Q4FIAASgLEFIAASgO0GIAESgPEcBQAAEoD1BiABHBKA+QQAAQYcBAABDhwEAAEc
+HAQAAQEcBCABAhwEBwEeAAIeAAUQAQAeAAQKAR4ABAcBEwAGFRI0ARMABwYVEnEBEwAGFRJxARMA
+AhMABAoBEwAFIAEBEwAIt3pcVhk04IkIsD9ffxHVCjoIiYRdzYCAzJEIUENtylx/fSMHBhUSNAES
+DAcGFRI0ARIIBwYVEjQBEmUHBhUSNAESMAMGEnkDBhJ9BAYSgIUEBhKAiQQGEoCNAwYSJAMGEigD
+BhIcBAYSgK0DBhIsAgYcAwAAAQQAABIMBAAAEggEAAASZQQAABIwBAAAEnkEAAASfQUAAQESfQgg
+ARKAlRKAhQggARKAnRKAlQQgAQENDSAEAQgdCB0SgKUSgKkGIAEBEoCtAyAABgQAABIsBCAAEm0H
+EAEBHgAeAAcwAQEBEB4ABAgAEgwECAASCAQIABJlBAgAEjAECAASeQQIABJ9AygADgMoAAIDKAAN
+BSgAEoCxAygABgQIABIsBCgAEwAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJv
+d3MBCAEAAgAAAAAAKAEAI1NDXzIyYzgxNjBmOTU0NzQ2YWNhZGIyM2ZjYjRmMzAyOGM0AAAFAQAA
+AAAWAQARQ29weXJpZ2h0IEAgIDIwMTYAAAUBAAEAACkBACQ4OTMzMWU5OC05YzU2LTRlZGQtOTQ4
+Zi02ZWNiZjUxYjI2ZmQAAAwBAAcxLjAuMC4wAABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0
+LjcBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNwQBAAAACAEAAQAA
+AAAAGAEACk15VGVtcGxhdGUIMTEuMC4wLjAAAGEBADRTeXN0ZW0uV2ViLlNlcnZpY2VzLlByb3Rv
+Y29scy5Tb2FwSHR0cENsaWVudFByb3RvY29sEkNyZWF0ZV9fSW5zdGFuY2VfXxNEaXNwb3NlX19J
+bnN0YW5jZV9fAAAAEAEAC015LkNvbXB1dGVyAAATAQAOTXkuQXBwbGljYXRpb24AAAwBAAdNeS5V
+c2VyAAATAQAOTXkuV2ViU2VydmljZXMAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJj
+ZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1
+dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1
+bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAEEsAAAAAAAAAAAAAKksAAAAg
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABxLAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5k
+bGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAAGAAA
+gAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhgAADsAwAA
+AAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv/gAAAQAA
+AAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYAYQByAEYA
+aQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAAALAETAMA
+AAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAAMAAwADQAYgAwAAAA
+GgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBuAHkATgBhAG0AZQAA
+AAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMAXwAyADIA
+YwA4ADEANgAwAGYAOQA1ADQANwA0ADYAYQBjAGEAZABiADIAMwBmAGMAYgA0AGYAMwAwADIAOABj
+ADQAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4AMAAuADAAAABwACgA
+AQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADkAMABEADEAOAAyAEIANwA1ADEAOAA5
+ADQAMgAxADIAOQA1ADkAQwBBADkAMQA2ADIARQA5AEEAQQA1ADYAQwAuAGQAbABsAAAASAASAAEA
+TABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAAIAAy
+ADAAMQA2AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMAAAAAAAAAAAB4ACgA
+AQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8AOQAwAEQAMQA4ADIAQgA3
+ADUAMQA4ADkANAAyADEAMgA5ADUAOQBDAEEAOQAxADYAMgBFADkAQQBBADUANgBDAC4AZABsAGwA
+AABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfADIAMgBjADgAMQA2ADAAZgA5
+ADUANAA3ADQANgBhAGMAYQBkAGIAMgAzAGYAYwBiADQAZgAzADAAMgA4AGMANAAAADQACAABAFAA
+cgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4AAgAAQBBAHMAcwBl
+AG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAMAAAAPDsAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del proyecto de Microsoft Visual Studio Tools para Aplicaciones. Los nombres de proyecto deben ser únicos en el paquete."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_90d182b751894212959ca9162e9aa56c</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el lenguaje de programación que utiliza el script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">VisualBasic</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una lista separada por comas de variables de sólo lectura."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg">User::CurrentYear,User::SAPClient,User::SAPHost,User::SAPIdleTimeOut,User::SAPLanguage,User::SAPMaxPoolSize,User::SAPName,User::SAPPassword,User::SAPSystemNumber,User::SAPUser,User::Sociedad</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una lista separada por comas de variables de lectura/escritura."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Lista de puntos de interrupción presentes en el script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">39</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataShaChecksum"
+                  typeConverter="NOTBROWSABLE">d9d39668c026174dd2b7470b064fcb8729e2a22a</property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">6a46accde12233cf06612cc70821cacc</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Connections[DBConnection]"
+                  connectionManagerID="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWPOWERBI.CIEDw1]"
+                  name="DBConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices]"
+                  hasSideEffects="true"
+                  name="SAPPrices">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices].Columns[Orden]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices].Columns[Orden]"
+                      name="Orden" />
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices].Columns[Presupuesto]"
+                      dataType="r8"
+                      lineageId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices].Columns[Presupuesto]"
+                      name="Presupuesto" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETLPresupuesto\z_SAPPresupuesto"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="z_SAPPresupuesto"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[z_SAPPresupuesto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETLPresupuesto\z_SAPPresupuesto.Connections[OleDbConnection]"
+                  connectionManagerID="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWPOWERBI.CIEDw1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].Columns[Orden]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Orden"
+                      externalMetadataColumnId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Orden]"
+                      lineageId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices].Columns[Orden]" />
+                    <inputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].Columns[Presupuesto]"
+                      cachedDataType="r8"
+                      cachedName="Presupuesto"
+                      externalMetadataColumnId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Presupuesto]"
+                      lineageId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices].Columns[Presupuesto]" />
+                    <inputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].Columns[Sociedad]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Sociedad"
+                      externalMetadataColumnId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Sociedad]"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Sociedad]" />
+                    <inputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].Columns[Ano]"
+                      cachedDataType="i2"
+                      cachedName="Ano"
+                      externalMetadataColumnId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Ano]" />
+                    <inputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].Columns[Planta]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Planta"
+                      externalMetadataColumnId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Planta]"
+                      lineageId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output].Columns[Planta]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      dataType="i4"
+                      name="Ano" />
+                    <externalMetadataColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Orden]"
+                      dataType="wstr"
+                      length="100"
+                      name="Orden" />
+                    <externalMetadataColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Presupuesto]"
+                      dataType="r8"
+                      name="Presupuesto" />
+                    <externalMetadataColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Sociedad]"
+                      dataType="wstr"
+                      length="4"
+                      name="Sociedad" />
+                    <externalMetadataColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input].ExternalColumns[Planta]"
+                      dataType="wstr"
+                      length="50"
+                      name="Planta" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETLPresupuesto\z_SAPPresupuesto.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETLPresupuesto\z_SAPPresupuesto.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETLPresupuesto\z_SAPPresupuesto.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETLPresupuesto\z_SAPPresupuesto.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETLPresupuesto.Paths[Derived Column Output]"
+              endId="Package\ETLPresupuesto\z_SAPPresupuesto.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\ETLPresupuesto\Añade_Sociedad_Año.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\ETLPresupuesto.Paths[SAPPrices]"
+              endId="Package\ETLPresupuesto\Añade_Sociedad_Año.Inputs[Derived Column Input]"
+              name="SAPPrices"
+              startId="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO.Outputs[SAPPrices]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQLDeletePresupuesto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Borrar z_SAPPresupuesto"
+      DTS:DTSID="{243969C3-6CE8-42F6-95DC-DEAABBFAAACE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQLDeletePresupuesto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+          SQLTask:SqlStatementSource="delete from  [dbo].[z_SAPPresupuesto]&#xA;where Sociedad = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Sociedad"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQLSAPConection"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{87CD83B5-9BAF-45E8-AFA4-7D17C5FBC415}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQLSAPConection"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+          SQLTask:SqlStatementSource="SELECT        Id, Name, SAPUser, Passwd, Client, Lang, AsHost, Sysnr, MaxPoolSize, IdleTimeOut&#xA;FROM            SAPConnection&#xA;WHERE   Id = ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Name"
+            SQLTask:DtsVariableName="User::SAPName" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SAPUser"
+            SQLTask:DtsVariableName="User::SAPUser" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Passwd"
+            SQLTask:DtsVariableName="User::SAPPassword" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Client"
+            SQLTask:DtsVariableName="User::SAPClient" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Lang"
+            SQLTask:DtsVariableName="User::SAPLanguage" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="AsHost"
+            SQLTask:DtsVariableName="User::SAPHost" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Sysnr"
+            SQLTask:DtsVariableName="User::SAPSystemNumber" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="MaxPoolSize"
+            SQLTask:DtsVariableName="User::SAPMaxPoolSize" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IdleTimeOut"
+            SQLTask:DtsVariableName="User::SAPIdleTimeOut" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::IdConnection"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQLSapPlants"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQLSapPlants"
+      DTS:DTSID="{0756cda5-6c81-415d-8b71-69894b50a327}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQLSapPlants"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+          SQLTask:SqlStatementSource="EXEC sp_VariablesPlant ?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IdConnection"
+            SQLTask:DtsVariableName="User::IdConnection" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CurrentYear"
+            SQLTask:DtsVariableName="User::CurrentYear" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="Society"
+            SQLTask:DtsVariableName="User::Sociedad" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Project::Plant"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6FF3676C-CEA9-496D-9E16-F21BA723F496}"
+      DTS:From="Package\SQLSAPConection"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SQLDeletePresupuesto" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{73A827F9-3310-4F41-B948-83D8DFBB2EBC}"
+      DTS:From="Package\SQLSapPlants"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQLSAPConection" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0D283E3-06DB-4CE4-83B5-CA80088B2993}"
+      DTS:From="Package\SQLDeletePresupuesto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\ETLPresupuesto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\ETLPresupuesto"
+          TopLeft="21.1,310.3" />
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\SQLDeletePresupuesto"
+          TopLeft="5.50000000000003,208.7" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\SQLSAPConection"
+          TopLeft="17.1,107.1" />
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\SQLSapPlants"
+          TopLeft="26.3,5.49999999999995" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="97.9,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="97.9,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="97.9,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETLPresupuesto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\ETLPresupuesto\z_SAPPresupuesto"
+          TopLeft="422,223" />
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\ETLPresupuesto\Añade_Sociedad_Año"
+          TopLeft="408,134" />
+        <NodeLayout
+          Size="308,41.6"
+          Id="Package\ETLPresupuesto\SAP_Function_ZRFC_CO_GET_PRESUPUESTADO"
+          TopLeft="344,30" />
+        <EdgeLayout
+          Id="Package\ETLPresupuesto.Paths[Derived Column Output]"
+          TopLeft="501.25,176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETLPresupuesto.Paths[SAPPrices]"
+          TopLeft="498,72">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETLPresupuesto\z_SAPPresupuesto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2418 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/24/2020 5:05:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AWSQL01COR"
+  DTS:CreatorName="CIE\userbisql"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{01471B49-EF8C-4610-91AA-6040F3D0356D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="88"
+  DTS:VersionGUID="{67BB3B81-ABD0-477E-94C4-5679561F77A6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Inversiones]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{FB27DFA6-E38A-4031-B4E2-CEEB31842489}"
+      DTS:ObjectName="Inversiones">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::RutaFicheroInversiones]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\FormacionCIE\Excels Carga\2020_BPC Fichero plano inversiones_v1.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=NO&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Ordenes]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{7d91a250-d536-4ee3-aad8-ba71a388127e}"
+      DTS:ObjectName="Ordenes">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::RutaFicheroOrdenes]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\FormacionCIE\Excels Carga\Ordenes.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RelacionSocBPCSAP]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{0401dc01-364c-44ce-8620-6a3f4878aa8b}"
+      DTS:ObjectName="RelacionSocBPCSAP">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::RutaFicheroRelacionSocBPCSAP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\FormacionCIE\Excels Carga\Carga Sociedades BPC-SAP.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{467CD78C-4298-4769-AEB2-F22797E63D75}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_I4) @[User::AnioFichero_Pre]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero">
+      <DTS:VariableValue
+        DTS:DataType="3">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{427260F2-6307-45AB-A459-08CB6917B5E2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( @[User::RutaFicheroInversiones] , 30,4)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero_Pre">
+      <DTS:VariableValue
+        DTS:DataType="8">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5FA68CFE-181B-43D9-86E9-54C502907DEE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroInversiones">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\FormacionCIE\Excels Carga\2020_BPC Fichero plano inversiones_v1.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C11A518D-3119-4173-A473-2D0C0A6C2DF6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroOrdenes">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\FormacionCIE\Excels Carga\Ordenes.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D12E4D8B-7C4A-4E6A-9188-558EB66B551A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroRelacionSocBPCSAP">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\FormacionCIE\Excels Carga\Carga Sociedades BPC-SAP.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Descripción de Órdenes"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C042957B-A9A8-440C-A209-65A0EE5F675D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Descripción de Órdenes">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Descripción de Órdenes\ETLExcelOrdenes"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{a332487d-0049-4b02-a21c-7bd3ad15bf9a}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ETLExcelOrdenes"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="ExcelOrdenes"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Ordenes$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Ordenes$A1:AA]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Ordenes]"
+                      connectionManagerRefId="Package.ConnectionManagers[Ordenes]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Grupo]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].ExternalColumns[Grupo]"
+                          length="255"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Grupo]"
+                          name="Grupo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Orden]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].ExternalColumns[Orden]"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Orden]"
+                          name="Orden"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].ExternalColumns[Descripcion]"
+                          length="255"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Descripcion]"
+                          name="Descripcion"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].ExternalColumns[Grupo]"
+                          dataType="wstr"
+                          length="255"
+                          name="Grupo" />
+                        <externalMetadataColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].ExternalColumns[Orden]"
+                          dataType="r8"
+                          name="Orden" />
+                        <externalMetadataColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          name="Descripcion" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[Grupo]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[Grupo]"
+                          name="Grupo" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[Orden]"
+                          dataType="r8"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[Orden]"
+                          name="Orden" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[Descripcion]"
+                          name="Descripcion" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="z_ExcelOrdenes"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[z_ExcelOrdenes]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Connections[OleDbConnection]"
+                      connectionManagerID="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[AWPOWERBI.CIEDw1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].Columns[Grupo]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Grupo"
+                          externalMetadataColumnId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].ExternalColumns[Grupo]"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Grupo]" />
+                        <inputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].Columns[Orden]"
+                          cachedDataType="r8"
+                          cachedName="Orden"
+                          externalMetadataColumnId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].ExternalColumns[Orden]"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Orden]" />
+                        <inputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].Columns[Descripcion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Descripcion"
+                          externalMetadataColumnId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].ExternalColumns[Descripcion]"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output].Columns[Descripcion]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          name="Descripcion" />
+                        <externalMetadataColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].ExternalColumns[Grupo]"
+                          dataType="wstr"
+                          length="255"
+                          name="Grupo" />
+                        <externalMetadataColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input].ExternalColumns[Orden]"
+                          dataType="wstr"
+                          length="255"
+                          name="Orden" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Descripción de Órdenes\ETLExcelOrdenes.Paths[Excel Source Output]"
+                  endId="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes.Inputs[OLE DB Destination Input]"
+                  name="Excel Source Output"
+                  startId="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Descripción de Órdenes\SQLDeleteExcelOrdenes"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="SQLDeleteExcelOrdenes"
+          DTS:DTSID="{bdaeba05-a0bd-49b3-aef5-162f045a9260}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQLDeleteExcelOrdenes"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+              SQLTask:SqlStatementSource="delete from [dbo].[z_ExcelOrdenes]&#xA; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Descripción de Órdenes.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{63ce55a6-f36f-46dd-a651-55944324fb9e}"
+          DTS:From="Package\Descripción de Órdenes\SQLDeleteExcelOrdenes"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Descripción de Órdenes\ETLExcelOrdenes" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inversiones BPC"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D22FB8E1-6C5E-4DAF-83FC-C71975DC8633}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inversiones BPC">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Inversiones BPC\ETLExcelInversionesBPC"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{bf0ca942-fcd8-4478-86d2-c158eef1dd96}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ETLExcelInversionesBPC"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Columna Año"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Output].Columns[Anio]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Output].Columns[Anio]"
+                          name="Anio"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::AnioFichero]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::AnioFichero]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Inversiones"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">'Ejemplo informe$'</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Hoja1$A4:AA]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Inversiones]"
+                      connectionManagerRefId="Package.ConnectionManagers[Inversiones]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoJulio]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F10]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoJulio]"
+                          name="PresupuestoJulio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealJulio]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F22]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealJulio]"
+                          name="RealJulio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealSeptiembre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F24]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealSeptiembre]"
+                          name="RealSeptiembre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealOctubre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F25]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealOctubre]"
+                          name="RealOctubre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealNoviembre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F26]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealNoviembre]"
+                          name="RealNoviembre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealDiciembre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F27]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealDiciembre]"
+                          name="RealDiciembre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[CodSociedad]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F1]"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[CodSociedad]"
+                          name="CodSociedad"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[CodInversion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F2]"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[CodInversion]"
+                          name="CodInversion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F3]"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[Descripcion]"
+                          name="Descripcion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoEnero]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F4]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoEnero]"
+                          name="PresupuestoEnero"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoFebrero]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F5]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoFebrero]"
+                          name="PresupuestoFebrero"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoMarzo]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F6]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoMarzo]"
+                          name="PresupuestoMarzo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoAbril]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F7]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoAbril]"
+                          name="PresupuestoAbril"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoMayo]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F8]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoMayo]"
+                          name="PresupuestoMayo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoJunio]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F9]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoJunio]"
+                          name="PresupuestoJunio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoAgosto]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F11]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoAgosto]"
+                          name="PresupuestoAgosto"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoSeptiembre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F12]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoSeptiembre]"
+                          name="PresupuestoSeptiembre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoOctubre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F13]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoOctubre]"
+                          name="PresupuestoOctubre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoNoviembre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F14]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoNoviembre]"
+                          name="PresupuestoNoviembre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoDiciembre]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F15]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoDiciembre]"
+                          name="PresupuestoDiciembre"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealEnero]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F16]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealEnero]"
+                          name="RealEnero"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealFebrero]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F17]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealFebrero]"
+                          name="RealFebrero"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealMarzo]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F18]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealMarzo]"
+                          name="RealMarzo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealAbril]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F19]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealAbril]"
+                          name="RealAbril"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealMayo]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F20]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealMayo]"
+                          name="RealMayo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealJunio]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F21]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealJunio]"
+                          name="RealJunio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealAgosto]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F23]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealAgosto]"
+                          name="RealAgosto"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F10]"
+                          dataType="wstr"
+                          length="255"
+                          name="F10" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F22]"
+                          dataType="wstr"
+                          length="255"
+                          name="F22" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F24]"
+                          dataType="wstr"
+                          length="255"
+                          name="F24" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F25]"
+                          dataType="wstr"
+                          length="255"
+                          name="F25" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F26]"
+                          dataType="wstr"
+                          length="255"
+                          name="F26" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F27]"
+                          dataType="wstr"
+                          length="255"
+                          name="F27" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F1]"
+                          dataType="wstr"
+                          length="255"
+                          name="F1" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F2]"
+                          dataType="wstr"
+                          length="255"
+                          name="F2" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F3]"
+                          dataType="wstr"
+                          length="255"
+                          name="F3" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F4]"
+                          dataType="r8"
+                          name="F4" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F5]"
+                          dataType="r8"
+                          name="F5" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F6]"
+                          dataType="r8"
+                          name="F6" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F7]"
+                          dataType="r8"
+                          name="F7" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F8]"
+                          dataType="r8"
+                          name="F8" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F9]"
+                          dataType="r8"
+                          name="F9" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F11]"
+                          dataType="r8"
+                          name="F11" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F12]"
+                          dataType="r8"
+                          name="F12" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F13]"
+                          dataType="r8"
+                          name="F13" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F14]"
+                          dataType="r8"
+                          name="F14" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F15]"
+                          dataType="r8"
+                          name="F15" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F16]"
+                          dataType="r8"
+                          name="F16" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F17]"
+                          dataType="r8"
+                          name="F17" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F18]"
+                          dataType="r8"
+                          name="F18" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F19]"
+                          dataType="r8"
+                          name="F19" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F20]"
+                          dataType="r8"
+                          name="F20" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F21]"
+                          dataType="r8"
+                          name="F21" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].ExternalColumns[F23]"
+                          dataType="r8"
+                          name="F23" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F1]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F1]"
+                          name="F1" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F2]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F2]"
+                          name="F2" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F3]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F3]"
+                          name="F3" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F4]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F4]"
+                          name="F4" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F5]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F5]"
+                          name="F5" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F6]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F6]"
+                          name="F6" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F7]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F7]"
+                          name="F7" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F8]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F8]"
+                          name="F8" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F9]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F9]"
+                          name="F9" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F10]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F10]"
+                          name="F10" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F11]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F11]"
+                          name="F11" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F12]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F12]"
+                          name="F12" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F13]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F13]"
+                          name="F13" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F14]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F14]"
+                          name="F14" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F15]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F15]"
+                          name="F15" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F16]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F16]"
+                          name="F16" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F17]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F17]"
+                          name="F17" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F18]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F18]"
+                          name="F18" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F19]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F19]"
+                          name="F19" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F20]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F20]"
+                          name="F20" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F21]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F21]"
+                          name="F21" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F22]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F22]"
+                          name="F22" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F23]"
+                          dataType="r8"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F23]"
+                          name="F23" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F24]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F24]"
+                          name="F24" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F25]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F25]"
+                          name="F25" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F26]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F26]"
+                          name="F26" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F27]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[F27]"
+                          name="F27" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="z_ExcelInversiones"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[z_ExcelInversionesBPC]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Connections[OleDbConnection]"
+                      connectionManagerID="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[AWPOWERBI.CIEDw1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoJulio]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoJulio"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoJulio]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoJulio]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealJulio]"
+                          cachedDataType="r8"
+                          cachedName="RealJulio"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealJulio]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealJulio]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealSeptiembre]"
+                          cachedDataType="r8"
+                          cachedName="RealSeptiembre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealSeptiembre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealSeptiembre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealOctubre]"
+                          cachedDataType="r8"
+                          cachedName="RealOctubre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealOctubre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealOctubre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealNoviembre]"
+                          cachedDataType="r8"
+                          cachedName="RealNoviembre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealNoviembre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealNoviembre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealDiciembre]"
+                          cachedDataType="r8"
+                          cachedName="RealDiciembre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealDiciembre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealDiciembre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[CodSociedad]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CodSociedad"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[CodSociedad]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[CodSociedad]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[CodInversion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CodInversion"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[CodInversion]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[CodInversion]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[Descripcion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Descripcion"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[Descripcion]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[Descripcion]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoEnero]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoEnero"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoEnero]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoEnero]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoFebrero]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoFebrero"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoFebrero]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoFebrero]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoMarzo]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoMarzo"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoMarzo]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoMarzo]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoAbril]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoAbril"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoAbril]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoAbril]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoMayo]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoMayo"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoMayo]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoMayo]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoJunio]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoJunio"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoJunio]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoJunio]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoAgosto]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoAgosto"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoAgosto]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoAgosto]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoSeptiembre]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoSeptiembre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoSeptiembre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoSeptiembre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoOctubre]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoOctubre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoOctubre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoOctubre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoNoviembre]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoNoviembre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoNoviembre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoNoviembre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[PresupuestoDiciembre]"
+                          cachedDataType="r8"
+                          cachedName="PresupuestoDiciembre"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoDiciembre]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[PresupuestoDiciembre]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealEnero]"
+                          cachedDataType="r8"
+                          cachedName="RealEnero"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealEnero]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealEnero]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealFebrero]"
+                          cachedDataType="r8"
+                          cachedName="RealFebrero"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealFebrero]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealFebrero]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealMarzo]"
+                          cachedDataType="r8"
+                          cachedName="RealMarzo"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealMarzo]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealMarzo]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealAbril]"
+                          cachedDataType="r8"
+                          cachedName="RealAbril"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealAbril]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealAbril]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealMayo]"
+                          cachedDataType="r8"
+                          cachedName="RealMayo"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealMayo]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealMayo]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealJunio]"
+                          cachedDataType="r8"
+                          cachedName="RealJunio"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealJunio]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealJunio]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[RealAgosto]"
+                          cachedDataType="r8"
+                          cachedName="RealAgosto"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealAgosto]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output].Columns[RealAgosto]" />
+                        <inputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].Columns[Anio]"
+                          cachedDataType="i4"
+                          cachedName="Anio"
+                          externalMetadataColumnId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[Anio]"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Output].Columns[Anio]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[CodSociedad]"
+                          dataType="wstr"
+                          length="255"
+                          name="CodSociedad" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[CodInversion]"
+                          dataType="wstr"
+                          length="255"
+                          name="CodInversion" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          name="Descripcion" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoEnero]"
+                          dataType="r8"
+                          name="PresupuestoEnero" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoFebrero]"
+                          dataType="r8"
+                          name="PresupuestoFebrero" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoMarzo]"
+                          dataType="r8"
+                          name="PresupuestoMarzo" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoAbril]"
+                          dataType="r8"
+                          name="PresupuestoAbril" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoMayo]"
+                          dataType="r8"
+                          name="PresupuestoMayo" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoJunio]"
+                          dataType="r8"
+                          name="PresupuestoJunio" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoJulio]"
+                          dataType="r8"
+                          name="PresupuestoJulio" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoAgosto]"
+                          dataType="r8"
+                          name="PresupuestoAgosto" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoSeptiembre]"
+                          dataType="r8"
+                          name="PresupuestoSeptiembre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoOctubre]"
+                          dataType="r8"
+                          name="PresupuestoOctubre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoNoviembre]"
+                          dataType="r8"
+                          name="PresupuestoNoviembre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[PresupuestoDiciembre]"
+                          dataType="r8"
+                          name="PresupuestoDiciembre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealEnero]"
+                          dataType="r8"
+                          name="RealEnero" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealFebrero]"
+                          dataType="r8"
+                          name="RealFebrero" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealMarzo]"
+                          dataType="r8"
+                          name="RealMarzo" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealAbril]"
+                          dataType="r8"
+                          name="RealAbril" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealMayo]"
+                          dataType="r8"
+                          name="RealMayo" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealJunio]"
+                          dataType="r8"
+                          name="RealJunio" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealJulio]"
+                          dataType="r8"
+                          name="RealJulio" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealAgosto]"
+                          dataType="r8"
+                          name="RealAgosto" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealSeptiembre]"
+                          dataType="r8"
+                          name="RealSeptiembre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealOctubre]"
+                          dataType="r8"
+                          name="RealOctubre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealNoviembre]"
+                          dataType="r8"
+                          name="RealNoviembre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[RealDiciembre]"
+                          dataType="r8"
+                          name="RealDiciembre" />
+                        <externalMetadataColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input].ExternalColumns[Anio]"
+                          dataType="i4"
+                          name="Anio" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Inversiones BPC\ETLExcelInversionesBPC.Paths[Derived Column Output]"
+                  endId="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Inversiones BPC\ETLExcelInversionesBPC.Paths[Excel Source Output]"
+                  endId="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Inversiones BPC\ETLFact_InversionesBPC"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d0b9abc7-daff-4788-b384-49213e085d9e}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ETLFact_InversionesBPC"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+              SQLTask:SqlStatementSource="with Inversiones as (&#xA;SELECT [Anio]&#xA;      ,[CodSociedad]&#xA;      ,[CodInversion]&#xA;      ,[Descripcion]&#xA;      ,isnull(cast([PresupuestoEnero]                      as float) , 0) as [P01]&#xA;      ,isnull(cast([PresupuestoFebrero]                    as float) , 0) as [P02]&#xA;      ,isnull(cast([PresupuestoMarzo]        as float) , 0) as [P03]&#xA;      ,isnull(cast([PresupuestoAbril]        as float) , 0) as [P04]&#xA;      ,isnull(cast([PresupuestoMayo]        as float) , 0) as [P05]&#xA;      ,isnull(cast([PresupuestoJunio]        as float) , 0) as [P06]&#xA;      ,isnull(cast([PresupuestoJulio]        as float) , 0) as [P07]&#xA;      ,isnull(cast([PresupuestoAgosto]        as float) , 0) as [P08]&#xA;      ,isnull(cast([PresupuestoSeptiembre]       as float) , 0) as [P09]&#xA;      ,isnull(cast([PresupuestoOctubre]           as float) , 0) as [P10]&#xA;      ,isnull(cast([PresupuestoNoviembre]       as float) , 0) as [P11]&#xA;      ,isnull(cast([PresupuestoDiciembre]       as float) , 0) as [P12]&#xA;      ,isnull(cast([RealEnero]          as float) , 0) as [R01]&#xA;      ,isnull(cast([RealFebrero]         as float) , 0) as [R02]&#xA;      ,isnull(cast([RealMarzo]          as float) , 0) as [R03]&#xA;      ,isnull(cast([RealAbril]          as float) , 0) as [R04]&#xA;      ,isnull(cast([RealMayo]          as float) , 0) as [R05]&#xA;      ,isnull(cast([RealJunio]          as float) , 0) as [R06]&#xA;      ,isnull(cast([RealJulio]          as float) , 0) as [R07]&#xA;      ,isnull(cast([RealAgosto]             as float) , 0) as [R08]&#xA;      ,isnull(cast([RealSeptiembre]            as float) , 0) as [R09]&#xA;      ,isnull(cast([RealOctubre]         as float) , 0) as [R10]&#xA;      ,isnull(cast([RealNoviembre]         as float) , 0) as [R11]&#xA;      ,isnull(cast([RealDiciembre]         as float) , 0) as [R12]&#xA;  FROM [z_ExcelInversionesBPC]&#xA;  where Anio=?&#xA;  )&#xA;  ,&#xA;  unpInversiones as  (&#xA;  select &#xA;  cast( cast(Anio as char(4)) + '/' + replace(PMes, 'P', '') +  '/01' as datetime) as fecha,&#xA;  CodSociedad, &#xA;  CodInversion, &#xA;  Descripcion, &#xA;&#xA;  Presupuesto,&#xA;  Real&#xA;  &#xA;  from&#xA;  Inversiones&#xA;&#xA;  UNPIVOT &#xA;  (&#xA; Presupuesto FOR PMES IN ([P01], [P02], [P03], [P04], [P05], [P06], [P07], [P08], [P09], [P10], [P11], [P12])&#xA;  ) as PPTO&#xA;&#xA;  UNPIVOT &#xA;  (&#xA; Real FOR RMES IN ([R01], [R02], [R03], [R04], [R05], [R06], [R07], [R08], [R09], [R10], [R11], [R12])&#xA;  ) as REAL&#xA;&#xA;  where right(PMES, 2) = right(RMES, 2)&#xA;&#xA;  )&#xA;&#xA;insert into z_Fact_InversionesBPC&#xA;SELECT  [Fecha]&#xA;  ,isnull(SAPPlants.[Plant], '0000') as Planta&#xA;       ,isnull (z_ExcelRelacionSocBPCSAP.CodSociedadSAP, '0000') as CodSociedadSAP&#xA;      ,[CodInversion]&#xA;      ,unpInversiones.[Descripcion] as Inversion&#xA;      ,[Presupuesto]&#xA;      ,[Real]&#xA;  FROM unpInversiones&#xA;   join [dbo].[z_ExcelRelacionSocBPCSAP]&#xA;  on z_ExcelRelacionSocBPCSAP.[CodSociedadBPC] = unpInversiones.CodSociedad&#xA; join [dbo].[SAPPlants]&#xA; on SAPPlants.[Society] = isnull (z_ExcelRelacionSocBPCSAP.CodSociedadSAP, '0')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AnioFichero"
+                SQLTask:DtsVariableName="User::AnioFichero"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Inversiones BPC\SQLDeleteExcelInversionesBPC"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{88ef38bd-3c95-4059-8cea-c2e4480e6a2d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQLDeleteExcelInversionesBPC"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+              SQLTask:SqlStatementSource="delete from [dbo].[z_ExcelInversionesBPC]&#xA;where Anio = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AnioFichero"
+                SQLTask:DtsVariableName="User::AnioFichero"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Inversiones BPC\SQLDeleteFact_InversionesBPC"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{adf225ca-18aa-4d74-834a-76de40dd0446}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQLDeleteFact_InversionesBPC"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+              SQLTask:SqlStatementSource="delete from [dbo].[z_Fact_InversionesBPC]&#xA;where year(fecha) = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@AnioFichero"
+                SQLTask:DtsVariableName="User::AnioFichero"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Inversiones BPC.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{10895FE5-55BC-49C4-AAF7-0BA16053BA25}"
+          DTS:From="Package\Inversiones BPC\SQLDeleteExcelInversionesBPC"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Inversiones BPC\ETLExcelInversionesBPC" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Inversiones BPC.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{2F1EBDDA-BEA2-4D80-A567-751755A518A7}"
+          DTS:From="Package\Inversiones BPC\ETLExcelInversionesBPC"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Inversiones BPC\SQLDeleteFact_InversionesBPC" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Inversiones BPC.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{77297FFA-B438-41C4-A79E-D8C2ECFD8256}"
+          DTS:From="Package\Inversiones BPC\SQLDeleteFact_InversionesBPC"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Inversiones BPC\ETLFact_InversionesBPC" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Relación Sociedades BPC SAP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Relación Sociedades BPC SAP"
+      DTS:DTSID="{95953C3D-0F97-4BEF-B60D-B3D6B0C8AA81}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Relación Sociedades BPC SAP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{a5030e5c-ff38-49eb-a798-3cf8e3417854}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ETLExcelRelacionSocBPCSAP"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="RelacionSocBPCSAP"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">'SOCIEDADES BPC-SAP$'</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [SOCIEDADES BPC-SAP$A1:AA]
+where [Sociedad SAP] is not null</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[RelacionSocBPCSAP]"
+                      connectionManagerRefId="Package.ConnectionManagers[RelacionSocBPCSAP]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Sociedad BPC]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].ExternalColumns[Sociedad BPC]"
+                          length="255"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Sociedad BPC]"
+                          name="Sociedad BPC"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].ExternalColumns[Descripcion]"
+                          length="255"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Descripcion]"
+                          name="Descripcion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Sociedad SAP]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].ExternalColumns[Sociedad SAP]"
+                          length="255"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Sociedad SAP]"
+                          name="Sociedad SAP"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].ExternalColumns[Sociedad BPC]"
+                          dataType="wstr"
+                          length="255"
+                          name="Sociedad BPC" />
+                        <externalMetadataColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          name="Descripcion" />
+                        <externalMetadataColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].ExternalColumns[Sociedad SAP]"
+                          dataType="wstr"
+                          length="255"
+                          name="Sociedad SAP" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[Sociedad BPC]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[Sociedad BPC]"
+                          name="Sociedad BPC" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[Descripcion]"
+                          name="Descripcion" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[Sociedad SAP]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[Sociedad SAP]"
+                          name="Sociedad SAP" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="z_ExcelRelacionSocBPCSAP"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[z_ExcelRelacionSocBPCSAP]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Connections[OleDbConnection]"
+                      connectionManagerID="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[AWPOWERBI.CIEDw1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].Columns[Descripcion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Descripcion"
+                          externalMetadataColumnId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].ExternalColumns[Descripcion]"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Descripcion]" />
+                        <inputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].Columns[Sociedad BPC]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Sociedad BPC"
+                          externalMetadataColumnId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].ExternalColumns[CodSociedadBPC]"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Sociedad BPC]" />
+                        <inputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].Columns[Sociedad SAP]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Sociedad SAP"
+                          externalMetadataColumnId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].ExternalColumns[CodSociedadSAP]"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output].Columns[Sociedad SAP]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].ExternalColumns[Descripcion]"
+                          dataType="wstr"
+                          length="255"
+                          name="Descripcion" />
+                        <externalMetadataColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].ExternalColumns[CodSociedadBPC]"
+                          dataType="wstr"
+                          length="255"
+                          name="CodSociedadBPC" />
+                        <externalMetadataColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input].ExternalColumns[CodSociedadSAP]"
+                          dataType="wstr"
+                          length="255"
+                          name="CodSociedadSAP" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP.Paths[Excel Source Output]"
+                  endId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP.Inputs[OLE DB Destination Input]"
+                  name="Excel Source Output"
+                  startId="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Relación Sociedades BPC SAP\SQLDeleteExcelRelacionSocBPCSAP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Borrar datos z_RelacionSocBPCSAP"
+          DTS:DTSID="{ae6f0eb8-3adf-4c64-ad20-bd1af8b6ab49}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQLDeleteExcelRelacionSocBPCSAP"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+              SQLTask:SqlStatementSource="delete from [dbo].[z_ExcelRelacionSocBPCSAP]&#xA; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Relación Sociedades BPC SAP.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7788e459-bb69-46fa-9c5e-5072bf603f77}"
+          DTS:From="Package\Relación Sociedades BPC SAP\SQLDeleteExcelRelacionSocBPCSAP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{641E4E80-FF39-4AEF-B3B6-828B298D9D17}"
+      DTS:From="Package\Relación Sociedades BPC SAP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Inversiones BPC" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A40DE2FF-AC04-4C55-8685-E7C5EE704184}"
+      DTS:From="Package\Descripción de Órdenes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Relación Sociedades BPC SAP" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159.2,41.6"
+          Id="Package\Descripción de Órdenes\ETLExcelOrdenes"
+          TopLeft="21.1,107.1" />
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\Descripción de Órdenes\SQLDeleteExcelOrdenes"
+          TopLeft="5.50000000000001,5.49999999999995" />
+        <EdgeLayout
+          Id="Package\Descripción de Órdenes.PrecedenceConstraints[Constraint 2]"
+          TopLeft="100.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="201.6,204"
+          Size="201.6,247.2"
+          Id="Package\Descripción de Órdenes"
+          TopLeft="40.0714251070606,24.5117635476136" />
+        <NodeLayout
+          Size="192.8,41.6"
+          Id="Package\Inversiones BPC\ETLExcelInversionesBPC"
+          TopLeft="21.9,107.1" />
+        <NodeLayout
+          Size="193.6,41.6"
+          Id="Package\Inversiones BPC\ETLFact_InversionesBPC"
+          TopLeft="21.5,310.3" />
+        <NodeLayout
+          Size="224,41.6"
+          Id="Package\Inversiones BPC\SQLDeleteExcelInversionesBPC"
+          TopLeft="6.3,5.50000000000007" />
+        <NodeLayout
+          Size="225.6,41.6"
+          Id="Package\Inversiones BPC\SQLDeleteFact_InversionesBPC"
+          TopLeft="5.50000000000003,208.7" />
+        <EdgeLayout
+          Id="Package\Inversiones BPC.PrecedenceConstraints[Constraint]"
+          TopLeft="118.3,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inversiones BPC.PrecedenceConstraints[Constraint 1]"
+          TopLeft="118.3,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inversiones BPC.PrecedenceConstraints[Constraint 2]"
+          TopLeft="118.3,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="236.8,407.2"
+          Size="236.8,450.4"
+          Id="Package\Inversiones BPC"
+          TopLeft="580.185710169344,0.605882284302965" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP"
+          TopLeft="22.5285714528999,107.1" />
+        <NodeLayout
+          Size="244,41.6"
+          Id="Package\Relación Sociedades BPC SAP\SQLDeleteExcelRelacionSocBPCSAP"
+          TopLeft="5.50000000000001,5.50000000000007" />
+        <EdgeLayout
+          Id="Package\Relación Sociedades BPC SAP.PrecedenceConstraints[Constraint 1]"
+          TopLeft="128.21428572645,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="255.2,204"
+          Size="255.2,247.2"
+          Id="Package\Relación Sociedades BPC SAP"
+          TopLeft="268.557138818624,30.0176459777726" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="523.757138818624,153.617645977773">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.4285713507199,72.1882363065304"
+              Start="0,0"
+              End="48.9285713507199,72.1882363065304">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.21428567536,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.21428567536,0"
+                    Point2="28.21428567536,0"
+                    Point3="28.21428567536,4" />
+                  <mssgle:LineSegment
+                    End="28.21428567536,68.1882363065304" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.21428567536,68.1882363065304"
+                    Point2="28.21428567536,72.1882363065304"
+                    Point3="32.21428567536,72.1882363065304" />
+                  <mssgle:LineSegment
+                    End="48.9285713507199,72.1882363065304" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="241.671425107061,150.864704762693">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.8857137115634,0"
+              Start="0,0"
+              End="19.3857137115634,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.3857137115634,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Descripción de Órdenes\ETLExcelOrdenes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Descripción de Órdenes\ETLExcelOrdenes\z_ExcelOrdenes"
+          TopLeft="7.42856576491354,132.564703814629" />
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes"
+          TopLeft="13.1428573666785,10.1176471446209" />
+        <EdgeLayout
+          Id="Package\Descripción de Órdenes\ETLExcelOrdenes.Paths[Excel Source Output]"
+          TopLeft="83.8857115657966,51.7176471446209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.847056670008"
+              Start="0,0"
+              End="0,73.347056670008">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.347056670008" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Descripción de Órdenes\ETLExcelOrdenes\ExcelOrdenes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Inversiones BPC\ETLExcelInversionesBPC">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\Inversiones BPC\ETLExcelInversionesBPC\Inversiones"
+          TopLeft="387,93" />
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\Inversiones BPC\ETLExcelInversionesBPC\Columna Año"
+          TopLeft="375,207" />
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Inversiones BPC\ETLExcelInversionesBPC\z_ExcelInversiones"
+          TopLeft="375,304" />
+        <EdgeLayout
+          Id="Package\Inversiones BPC\ETLExcelInversionesBPC.Paths[Excel Source Output]"
+          TopLeft="449.75,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inversiones BPC\ETLExcelInversionesBPC.Paths[Derived Column Output]"
+          TopLeft="446,249">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,55"
+              Start="0,0"
+              End="13,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="9,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,27.5"
+                    Point2="13,27.5"
+                    Point3="13,31.5" />
+                  <mssgle:LineSegment
+                    End="13,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="207.2,41.6"
+          Id="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\z_ExcelRelacionSocBPCSAP"
+          TopLeft="340,280" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP\RelacionSocBPCSAP"
+          TopLeft="367,148" />
+        <EdgeLayout
+          Id="Package\Relación Sociedades BPC SAP\ETLExcelRelacionSocBPCSAP.Paths[Excel Source Output]"
+          TopLeft="453,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,90"
+              Start="0,0"
+              End="-9.5,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41"
+                    Point2="0,45"
+                    Point3="-4,45" />
+                  <mssgle:LineSegment
+                    End="-5.5,45" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,45"
+                    Point2="-9.5,45"
+                    Point3="-9.5,49" />
+                  <mssgle:LineSegment
+                    End="-9.5,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

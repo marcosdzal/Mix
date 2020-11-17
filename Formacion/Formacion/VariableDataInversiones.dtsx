@@ -1,0 +1,460 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/24/2020 5:05:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AWSQL01COR"
+  DTS:CreatorName="CIE\userbisql"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{3FA06864-89D0-4837-AD3E-A3C4985C29EC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="VariableDataInversiones"
+  DTS:PackageType="5"
+  DTS:VersionBuild="79"
+  DTS:VersionGUID="{B5CE77DA-2E9C-4165-BDD0-E50FD46028D0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEB8D79C-15C5-4EF4-8BC2-A37AEB635EB4}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_I4) @[User::AnioFichero_Pre]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero">
+      <DTS:VariableValue
+        DTS:DataType="3">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19E91B95-80DF-46A0-B8D1-644411C7B5CC}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( @[User::RutaFicheroInversiones] , 51,4)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero_Pre">
+      <DTS:VariableValue
+        DTS:DataType="8">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5FF7E67A-E6A2-4896-84F6-9EB19B465A22}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroInversiones">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\userbisql.CIE\Desktop\Formacion\Ficheros\2020_BPC Fichero plano inversiones_v1.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1A157DC2-1FBE-4FC4-B13F-9F133D1B7249}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroRelacionSocBPCSAP">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\userbisql.CIE\Desktop\Formacion\Ficheros\Carga Sociedades BPC-SAP.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\InversionesBPC"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{00463E8D-E2AD-4073-9323-205F0DA6B481}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="InversionesBPC">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\InversionesBPC\InversionesBPC"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="InversionesBPC"
+          DTS:DTSID="{2864C25A-8420-4E7E-9EB3-1AE0D965E646}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="InversionesBPC"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>CargaExcelInversionesBPC.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\InversionesSAP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{05532AAC-F9AC-4365-A49A-7C00C8BAD243}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="InversionesSAP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\InversionesSAP\ComprometidoSAP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="ComprometidoSAP"
+          DTS:DTSID="{561B5802-2716-4A7F-A4B9-AE74E538B923}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ComprometidoSAP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SAPComprometido.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InversionesSAP\Fact_InversionesSAP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Fact_Inversiones"
+          DTS:DTSID="{56F65373-3A2B-448E-A234-02264BCAE348}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fact_InversionesSAP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>InversionesSAP.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InversionesSAP\GrupoOrdenSAP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="GrupoOrdenSAP"
+          DTS:DTSID="{CA49BC3C-59E8-4A78-AFC0-7703CB9D11E8}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="GrupoOrdenSAP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SAPGrupoOrden.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InversionesSAP\PresupuestoSAP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="PresupuestoSAP"
+          DTS:DTSID="{1160BF6C-9C04-48A1-B157-148B6950858B}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PresupuestoSAP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SAPPresupuesto.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\InversionesSAP\RealSAP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="RealSAP"
+          DTS:DTSID="{984461FC-ED25-4D7E-90E6-8B8C5E831B11}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="RealSAP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>SAPReal.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InversionesSAP.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C2C8823C-05C3-4010-AC26-BF35ECCEEA5B}"
+          DTS:From="Package\InversionesSAP\ComprometidoSAP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\InversionesSAP\Fact_InversionesSAP" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InversionesSAP.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8827D310-DF59-479A-835C-E6DEF7BD3AA0}"
+          DTS:From="Package\InversionesSAP\GrupoOrdenSAP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\InversionesSAP\PresupuestoSAP" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InversionesSAP.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{E8282483-71D3-461E-81E7-D0984E27630C}"
+          DTS:From="Package\InversionesSAP\PresupuestoSAP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\InversionesSAP\RealSAP" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\InversionesSAP.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{BD9D9FB7-0BF8-4478-B8BF-6E7776B85643}"
+          DTS:From="Package\InversionesSAP\RealSAP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\InversionesSAP\ComprometidoSAP" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UpdateDatesAndStatistics"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="UpdateDatesAndStatistics"
+      DTS:DTSID="{29631B29-29CC-45A0-992B-56921EC29696}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UpdateDatesAndStatistics"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>UpdateFechasEstadisticas.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>DateBeginExexution</ParameterName>
+            <BindedVariableOrParameterName>System::StartTime</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>PackageUpdated</ParameterName>
+            <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>PackageDescription</ParameterName>
+            <BindedVariableOrParameterName>System::PackageName</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{775DEB80-BC84-43DA-9311-1D086E78BF0E}"
+      DTS:From="Package\InversionesSAP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\InversionesBPC" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D74D48DE-03C3-4216-9507-51F8F09C47A5}"
+      DTS:From="Package\InversionesBPC"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\UpdateDatesAndStatistics" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\InversionesBPC\InversionesBPC"
+          TopLeft="19.2142859478386,23.8529414338635" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="193.6,119.2"
+          Size="193.6,162.4"
+          Id="Package\InversionesBPC"
+          TopLeft="6.70000000000009,617.5" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\InversionesSAP\ComprometidoSAP"
+          TopLeft="5.50000000000004,310.3" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\InversionesSAP\Fact_InversionesSAP"
+          TopLeft="12.9285715550793,411.9" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\InversionesSAP\GrupoOrdenSAP"
+          TopLeft="5.5,5.49999999999995" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\InversionesSAP\PresupuestoSAP"
+          TopLeft="5.50000000000001,107.1" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\InversionesSAP\RealSAP"
+          TopLeft="5.50000000000003,208.7" />
+        <EdgeLayout
+          Id="Package\InversionesSAP.PrecedenceConstraints[Constraint]"
+          TopLeft="98.8142857775397,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InversionesSAP.PrecedenceConstraints[Constraint 1]"
+          TopLeft="96.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InversionesSAP.PrecedenceConstraints[Constraint 2]"
+          TopLeft="96.7,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InversionesSAP.PrecedenceConstraints[Constraint 3]"
+          TopLeft="96.7,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="193.6,508.8"
+          Size="193.6,552"
+          Id="Package\InversionesSAP"
+          TopLeft="6.70000000000005,5.5" />
+        <NodeLayout
+          Size="196,41.6"
+          Id="Package\UpdateDatesAndStatistics"
+          TopLeft="5.5000000000001,823.1" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="103.5,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="103.5,779.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.1999999999999"
+              Start="0,0"
+              End="0,35.6999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

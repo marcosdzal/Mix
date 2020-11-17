@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [RPUser]
+    WITH PASSWORD = N'oxJHyq%3x;lcddbfpad$funimsFT7_&#$!~<0v}uXPliWi?u', SID = 0xAF6C4384A10148439DA83790A315F581, DEFAULT_LANGUAGE = [us_english];
+

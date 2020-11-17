@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[Dim_OrdenesFabricacionSAP] (
+    [Centro]                NVARCHAR (4)  NULL,
+    [Ejercicio]             INT           NULL,
+    [Semana]                INT           NULL,
+    [Secuencia]             NVARCHAR (2)  NULL,
+    [TipoOrden]             NVARCHAR (2)  NULL,
+    [OrdenPrevisional]      NVARCHAR (10) NULL,
+    [GrupoPlanificacion]    NVARCHAR (4)  NULL,
+    [FechaAperturaPlanif]   DATETIME      NULL,
+    [FechaInicioExtrema]    DATETIME      NULL,
+    [FechaFinPlanificacion] DATETIME      NULL,
+    [Material]              NVARCHAR (18) NULL,
+    [VersionFabricacion]    NVARCHAR (4)  NULL,
+    [LineaProduccion]       NVARCHAR (8)  NULL,
+    [CantidadOriginal]      REAL          NULL,
+    [Unidad]                NVARCHAR (3)  NULL,
+    [OrgVentas]             NVARCHAR (4)  NULL,
+    [Lote]                  NVARCHAR (10) NULL,
+    [Marca]                 NVARCHAR (3)  NULL,
+    [Status]                NVARCHAR (1)  NULL,
+    [Colada]                NVARCHAR (10) NULL,
+    [ClaveColada]           NVARCHAR (5)  NULL,
+    [Retrabajo]             BIT           NULL,
+    [Captor]                BIT           NULL,
+    [CantidadInicial]       REAL          NULL
+);
+
