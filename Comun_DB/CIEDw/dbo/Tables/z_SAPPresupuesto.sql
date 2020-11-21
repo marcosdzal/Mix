@@ -3,6 +3,9 @@
     [Sociedad]    NVARCHAR (4)   NULL,
     [Ano]         INT            NULL,
     [Orden]       NVARCHAR (100) NULL,
-    [Presupuesto] FLOAT (53)     NULL
+    [Presupuesto] FLOAT (53)     NULL,
+    [PptoInicial] FLOAT (53)     NULL
 );
+
+
 
