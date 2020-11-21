@@ -40,7 +40,5 @@ InvBPC as
 
   select * from InvBPC 
   union all
-  select * from InvSAP 
-  union all
-  select 1 fromdsf
+  select * from InvSAP
 	

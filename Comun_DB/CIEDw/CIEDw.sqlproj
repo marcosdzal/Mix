@@ -79,6 +79,9 @@
     <Folder Include="TAUBATE\Views\" />
     <Folder Include="Security\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="DataMart\" />
+    <Folder Include="DataMart\Tables\" />
+    <Folder Include="DataMart\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\AutocontrolesSinCubrir.sql" />
@@ -504,5 +507,11 @@
     <Build Include="Security\ORBELAN.sql" />
     <Build Include="Security\ORBLEAN.sql" />
     <Build Include="Security\TAUBATE.sql" />
+    <Build Include="DataMart\Tables\z_SAPFamiliaEstrategica.sql" />
+    <Build Include="dbo\Views\z_Fact_Presupuesto.sql" />
+    <Build Include="DataMart\Views\Dim_FamiliaEstrategica.sql" />
+    <Build Include="DataMart\Views\Fact_Ventas.sql" />
+    <Build Include="DataMart\Views\Dim_Clientes.sql" />
+    <Build Include="Security\DataMart.sql" />
   </ItemGroup>
 </Project>
