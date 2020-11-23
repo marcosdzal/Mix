@@ -2,10 +2,6 @@
 
 
 
-
-
-
-
 CREATE view [dbo].[z_Fact_Presupuesto] as 
 select 
 Planta

@@ -40,5 +40,5 @@ InvBPC as
 
   select * from InvBPC 
   union all
-  select * from InvSAP 
+  select * from InvSAP
 	

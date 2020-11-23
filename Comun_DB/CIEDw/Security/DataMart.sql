@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [DataMart]
+    AUTHORIZATION [dbo];
+

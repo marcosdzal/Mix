@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">AWPOWERBI</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMhXjJYzRxUanTT/Vd65NOwAAAAACAAAAAAAQZgAAAAEAACAAAAAAUraFQytM2+reCXoTzK5vvXEOhrMVlEJBVu4eJqZzMwAAAAAOgAAAAAIAACAAAAB5FUuOozFdqeIgUQg5fofocan1wBN3Nl3g7vOZUmouSJAAAAAcxa1JUHng6WjbCtAJUpRj+63pLVhMev023nsGmBK/HApP74wtjVIjE4+59RSQgbKwwSfNh9FE1MA7QIbUn9cjjj0q0f0EVz40EuDxd7lTfer8V7KRkR/9kr92FkUy8XrlPxXYEUeLiCMcqI07RrIj+RW6v/GfKx3X0yPzjT6FHq+X4TQaVPgYG1c0pdQLv8BAAAAAiXuukCVSZ/TJI66dgnc5oa5SVbPx9/+WDb8D61s1ZJ1g/zgzulcgS3Ev/92agZEekLrs9k4Mz8tv4a7NFor8tg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMhXjJYzRxUanTT/Vd65NOwAAAAACAAAAAAAQZgAAAAEAACAAAABpPlM/+0ShutndPlc7qMLrFYr6Gg1xvOvF4BtEpm73/QAAAAAOgAAAAAIAACAAAABTJGZ6fhxX1zZD80hdxPpjmG0R1hhS181FHBzc5tVqUpAAAABagbZx94Mfmv3hhYige0/BDAOtoFNPJFugribikTi62/5fwVlcoeEF0zwCE9LqgVBq26a1U2jKzWUbpen8t9f0/tuJHD2BRHyzChCWCSvuqETWNq4t5M+BI7XWz0FM/lr5OfBz8SDl33gLKZfcAUQnmnx0S76xHP7NJy3uBGi9R0JKbxNcACIxkh/GoevWJCBAAAAAsnBNom7hMwRrVG2d14aX4fE0epzybBFAzv+6fSssDYtNkprNsom9tHC6a837s7wiAresYmAFb4IVDPfYuw2giA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -38,6 +38,7 @@
           <SSIS:Package SSIS:Name="UpdateFechasEstadisticas.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="VariableDataInversiones.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="CargaExcelInversionesBPC.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SAPFamiliaEstrategica.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="AWPOWERBI.CIEDw1.conmgr" />
@@ -1026,6 +1027,38 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SAPFamiliaEstrategica.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{ED350757-35C4-494F-B003-54094CD1490C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SAPPrecioVenta</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">291</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{25D3DB8C-65C8-4F17-AC9F-398C1DA76F88}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="UpdateAll">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{A17445FA-61C1-46D2-BD69-11D575ADBAC3}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">true</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
