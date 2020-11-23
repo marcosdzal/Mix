@@ -1,0 +1,550 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/24/2020 5:05:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AWSQL01COR"
+  DTS:CreatorName="CIE\userbisql"
+  DTS:DelayValidation="True"
+  DTS:DTSID="{95D638EA-38BE-4C16-93BF-A10A7D27C08D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.132"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="CargaExcelOrden"
+  DTS:PackageType="5"
+  DTS:VersionBuild="91"
+  DTS:VersionGUID="{C93D7C0A-959B-439A-8260-60D01DF58780}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Ordenes]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{9069A065-CADD-4E31-95CD-36B2F6C8B517}"
+      DTS:ObjectName="Ordenes">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::RutaFicheroOrdenes]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\FormacionCIE\Excels Carga\Ordenes.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8FD240A-4949-4A3F-A360-893892D520D8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_I4) @[User::AnioFichero_Pre]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero">
+      <DTS:VariableValue
+        DTS:DataType="3">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F8E5E5E1-96C2-4891-A88F-B52CE071FDED}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="SUBSTRING( @[User::RutaFicheroInversiones] , 30,4)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AnioFichero_Pre">
+      <DTS:VariableValue
+        DTS:DataType="8">2020</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F4787F0C-8635-4FC6-A74D-CF77BF54D417}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroInversiones">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\FormacionCIE\Excels Carga\2020_BPC Fichero plano inversiones_v1.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{33655313-9CE1-4638-B4F6-7E163F1ABAB4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroOrdenes">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\FormacionCIE\Excels Carga\Ordenes.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{12BFFBA5-78E3-45E7-8F32-1D43FDBBA9C0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RutaFicheroRelacionSocBPCSAP">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\FormacionCIE\Excels Carga\Carga Sociedades BPC-SAP.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Borrado Tabla"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Borrado Tabla"
+      DTS:DTSID="{4D047416-B6BC-4E39-86EE-4E023504E95E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borrado Tabla"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}"
+          SQLTask:SqlStatementSource="truncate table  [dbo].[z_ExcelOrdenes];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ETLCargaTabla"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{C3439160-FD95-47B8-9BB6-5C7786797776}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETLCargaTabla"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETLCargaTabla\Orden"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Orden"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Ordenes$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETLCargaTabla\Orden.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Ordenes]"
+                  connectionManagerRefId="Package.ConnectionManagers[Ordenes]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Grupo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].ExternalColumns[Grupo]"
+                      length="255"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Grupo]"
+                      name="Grupo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Orden]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].ExternalColumns[Orden]"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Orden]"
+                      name="Orden"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Descripcion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].ExternalColumns[Descripcion]"
+                      length="255"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Descripcion]"
+                      name="Descripcion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].ExternalColumns[Grupo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].ExternalColumns[Orden]"
+                      dataType="r8"
+                      name="Orden" />
+                    <externalMetadataColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].ExternalColumns[Descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      name="Descripcion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[Grupo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[Grupo]"
+                      name="Grupo" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[Orden]"
+                      dataType="r8"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[Orden]"
+                      name="Orden" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[Descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[Descripcion]"
+                      name="Descripcion" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETLCargaTabla\Tabla"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Tabla"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[z_ExcelOrdenes]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETLCargaTabla\Tabla.Connections[OleDbConnection]"
+                  connectionManagerID="{F4F16A0F-E076-4E2B-A8AE-3B9F4972B848}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AWPOWERBI.CIEDw1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].Columns[Grupo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Grupo"
+                      externalMetadataColumnId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].ExternalColumns[Grupo]"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Grupo]" />
+                    <inputColumn
+                      refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].Columns[Orden]"
+                      cachedDataType="r8"
+                      cachedName="Orden"
+                      externalMetadataColumnId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].ExternalColumns[Orden]"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Orden]" />
+                    <inputColumn
+                      refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].Columns[Descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Descripcion"
+                      externalMetadataColumnId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descripcion]"
+                      lineageId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel].Columns[Descripcion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].ExternalColumns[Grupo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].ExternalColumns[Orden]"
+                      dataType="wstr"
+                      length="255"
+                      name="Orden" />
+                    <externalMetadataColumn
+                      refId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB].ExternalColumns[Descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      name="Descripcion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETLCargaTabla\Tabla.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Tabla.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETLCargaTabla\Tabla.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETLCargaTabla\Tabla.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETLCargaTabla\Tabla.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETLCargaTabla.Paths[Salida de origen de Excel]"
+              endId="Package\ETLCargaTabla\Tabla.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de Excel"
+              startId="Package\ETLCargaTabla\Orden.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0ACB451-66F9-4FFE-ACB5-5D9CC3237049}"
+      DTS:From="Package\Borrado Tabla"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\ETLCargaTabla" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Borrado Tabla"
+          TopLeft="132.142859393237,69.5882362700664" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\ETLCargaTabla"
+          TopLeft="118.571430590688,178.176473087093" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="204.542859393237,111.188236270066">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.5714288025486,66.9882368170267"
+              Start="0,0"
+              End="-11.5714288025486,59.4882368170267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.4941184085133" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.4941184085133"
+                    Point2="0,33.4941184085133"
+                    Point3="-4,33.4941184085133" />
+                  <mssgle:LineSegment
+                    End="-7.57142880254864,33.4941184085133" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.57142880254864,33.4941184085133"
+                    Point2="-11.5714288025486,33.4941184085133"
+                    Point3="-11.5714288025486,37.4941184085133" />
+                  <mssgle:LineSegment
+                    End="-11.5714288025486,59.4882368170267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETLCargaTabla">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="107.2,41.6"
+          Id="Package\ETLCargaTabla\Orden"
+          TopLeft="187.142860329881,17.588235540786" />
+        <NodeLayout
+          Size="104,41.6"
+          Id="Package\ETLCargaTabla\Tabla"
+          TopLeft="173.571431527332,124.647060571657" />
+        <EdgeLayout
+          Id="Package\ETLCargaTabla.Paths[Salida de origen de Excel]"
+          TopLeft="240.742860329881,59.188235540786">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.1714288025486,65.4588250308714"
+              Start="0,0"
+              End="-15.1714288025486,57.9588250308714">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.7294125154357" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.7294125154357"
+                    Point2="0,32.7294125154357"
+                    Point3="-4,32.7294125154357" />
+                  <mssgle:LineSegment
+                    End="-11.1714288025486,32.7294125154357" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.1714288025486,32.7294125154357"
+                    Point2="-15.1714288025486,32.7294125154357"
+                    Point3="-15.1714288025486,36.7294125154357" />
+                  <mssgle:LineSegment
+                    End="-15.1714288025486,57.9588250308714" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETLCargaTabla\Orden">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETLCargaTabla\Tabla">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
