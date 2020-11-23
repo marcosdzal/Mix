@@ -7,6 +7,7 @@
     [Orden]        NVARCHAR (100) NULL,
     [Presupuesto]  FLOAT (53)     NULL,
     [Real]         FLOAT (53)     NULL,
-    [Comprometido] FLOAT (53)     NULL
+    [Comprometido] FLOAT (53)     NULL, 
+    [Nuevo] NCHAR(10) NULL
 );
 
